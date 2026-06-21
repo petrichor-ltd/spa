@@ -12,6 +12,17 @@
     <meta property="og:description" content="40年美業實戰、SPA創業顧問、美業經營輔導、AI美業應用與著作出版。" />
     <meta property="og:type" content="website" />
     <link rel="preload" href="assets/hero-exact-scene.png" as="image" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("spa-theme");
+          const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -26,18 +37,24 @@
         </a>
         <nav class="site-nav" aria-label="主要導覽">
           <a href="#about">關於我</a>
+          <a href="#authority">產業高度</a>
           <a href="#journey">專業歷程</a>
           <a href="#books">著作出版</a>
           <a href="#services">服務與專長</a>
           <a href="#contact">聯絡我</a>
         </nav>
-        <a class="lotus-link" href="#contact" aria-label="聯絡王燕呢顧問">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M24 38c7-5 11-11 11-18-6 1-10 4-11 10-1-6-5-9-11-10 0 7 4 13 11 18Z" />
-            <path d="M24 29c4-5 4-11 0-17-4 6-4 12 0 17Z" />
-            <path d="M9 37h30" />
-          </svg>
-        </a>
+        <div class="header-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切換深淺色模式" aria-pressed="false">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <a class="lotus-link" href="#contact" aria-label="聯絡王燕呢顧問">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 38c7-5 11-11 11-18-6 1-10 4-11 10-1-6-5-9-11-10 0 7 4 13 11 18Z" />
+              <path d="M24 29c4-5 4-11 0-17-4 6-4 12 0 17Z" />
+              <path d="M9 37h30" />
+            </svg>
+          </a>
+        </div>
       </header>
 
       <main>
@@ -47,6 +64,11 @@
               <p class="hero-handwriting">我把40年美業實戰，</p>
               <h1 id="hero-title">整理成下一代<br />美容人的路。</h1>
               <p class="hero-signature">王燕呢</p>
+              <div class="hero-proof" aria-label="專業定位">
+                <button type="button" data-modal="authority-industry">產業標準</button>
+                <button type="button" data-modal="authority-talent">人才培育</button>
+                <button type="button" data-modal="authority-future">AI整合</button>
+              </div>
               <div class="hero-actions" aria-label="Banner 快速操作">
                 <button type="button" data-modal="timeline-chair">
                   <span>理</span>
@@ -87,38 +109,63 @@
             <p>真正的美，不只是外在的修飾，而是內在平衡後自然散發的光彩。</p>
           </div>
 
-          <div class="timeline-wrap reveal" id="journey" data-delay="120">
-            <svg class="timeline-line" viewBox="0 0 560 210" aria-hidden="true">
-              <path d="M18 150 C110 128 133 73 210 92 S304 159 386 105 S469 18 535 45" />
-            </svg>
-            <button class="timeline-node node-1" type="button" data-modal="timeline-beautician">
-              <span class="node-icon">手</span>
-              <strong>第一線美容師</strong>
-              <small>累積專業技術<br />與顧客服務經驗</small>
-            </button>
-            <button class="timeline-node node-2" type="button" data-modal="timeline-educator">
-              <span class="node-icon">心</span>
-              <strong>教育講師</strong>
-              <small>培育新銳<br />專業美容人才</small>
-            </button>
-            <button class="timeline-node node-3" type="button" data-modal="timeline-founder">
-              <span class="node-icon">店</span>
-              <strong>創業者</strong>
-              <small>多店經營<br />品牌發展</small>
-            </button>
-            <button class="timeline-node node-4" type="button" data-modal="timeline-consultant">
-              <span class="node-icon">界</span>
-              <strong>國際顧問</strong>
-              <small>SPA產業顧問<br />國際視野</small>
-            </button>
-            <button class="timeline-node node-5" type="button" data-modal="timeline-chair">
-              <span class="node-icon">蓮</span>
-              <strong>台灣SPA協會<br />理事長</strong>
-              <small>推動產業發展<br />培育下一代</small>
-            </button>
+          <div class="journey-manuscript reveal" id="journey" data-delay="120">
+            <p class="manuscript-line">我不是從頭銜開始，而是從一次一次替顧客整理身心開始。</p>
+            <div class="story-seals" aria-label="王燕呢老師專業路徑">
+              <button class="story-seal" type="button" data-modal="timeline-beautician">
+                <span>01</span>
+                <strong>第一線美容師</strong>
+                <small>先學會聽懂顧客，再談技術與美感。</small>
+              </button>
+              <button class="story-seal" type="button" data-modal="timeline-educator">
+                <span>02</span>
+                <strong>教育講師</strong>
+                <small>把手感、服務與判斷整理成能被傳承的方法。</small>
+              </button>
+              <button class="story-seal" type="button" data-modal="timeline-founder">
+                <span>03</span>
+                <strong>品牌創業者</strong>
+                <small>從單次療程，走向品牌、團隊與穩定經營。</small>
+              </button>
+              <button class="story-seal" type="button" data-modal="timeline-consultant">
+                <span>04</span>
+                <strong>SPA顧問</strong>
+                <small>把國際視野轉成台灣店家能落地的流程。</small>
+              </button>
+              <button class="story-seal" type="button" data-modal="timeline-chair">
+                <span>05</span>
+                <strong>台灣SPA協會理事長</strong>
+                <small>讓產業標準、教育與下一代人才一起往前。</small>
+              </button>
+            </div>
+            <p class="manuscript-quote">每一步都不是履歷，而是一個人被好好照顧後留下的回音。</p>
           </div>
 
           <div class="mountains" aria-hidden="true"></div>
+        </section>
+
+        <section class="authority-section section" id="authority" aria-labelledby="authority-title">
+          <div class="authority-heading reveal">
+            <p class="section-kicker">台灣SPA協會理事長 × 產業推動者</p>
+            <h2 id="authority-title">我推動的不是單一技術，而是美業能被信任、被傳承、被升級的制度。</h2>
+          </div>
+          <div class="authority-panel reveal" data-delay="120">
+            <button class="authority-card" type="button" data-modal="authority-industry">
+              <span>01</span>
+              <strong>產業推動</strong>
+              <small>建立SPA專業標準，串聯交流、教育與服務品質。</small>
+            </button>
+            <button class="authority-card" type="button" data-modal="authority-talent">
+              <span>02</span>
+              <strong>人才培育</strong>
+              <small>把第一線經驗整理成美容師、講師與創業者能接住的方法。</small>
+            </button>
+            <button class="authority-card" type="button" data-modal="authority-future">
+              <span>03</span>
+              <strong>未來整合</strong>
+              <small>讓AI、品牌、自然療法與經營系統，成為美業升級工具。</small>
+            </button>
+          </div>
         </section>
 
         <section class="belief-section" aria-labelledby="belief-title">
@@ -153,8 +200,31 @@
           <div class="section-title-centered reveal">
             <span></span>
             <h2 id="books-title">著作出版</h2>
-            <p>10本書，陪你走通美業與人生的每一段路</p>
+            <p>10本書，不只是作品，而是我的美業知識地圖</p>
             <span></span>
+          </div>
+
+          <div class="knowledge-map reveal" aria-label="王燕呢老師著作思想體系">
+            <button type="button" data-modal="book-aesthetic">
+              <span>美學與經營</span>
+              <strong>打造美學視角、 美容成功心法</strong>
+            </button>
+            <button type="button" data-modal="book-nature">
+              <span>自然療癒</span>
+              <strong>自然療法導師、四季面膜、自我按摩</strong>
+            </button>
+            <button type="button" data-modal="book-meridian">
+              <span>身心覺察</span>
+              <strong>經絡情緒、人生密碼</strong>
+            </button>
+            <button type="button" data-modal="book-ai">
+              <span>科技未來</span>
+              <strong>AI也在學做人</strong>
+            </button>
+            <button type="button" data-modal="book-cotton">
+              <span>生活美學</span>
+              <strong>奶奶的魔法棉花棒</strong>
+            </button>
           </div>
 
           <div class="books-row reveal">
@@ -214,34 +284,34 @@
           <div class="section-title-centered reveal">
             <span></span>
             <h2 id="services-title">服務與專長</h2>
-            <p>整合美業 × 科技 × 教育 × 療癒</p>
+            <p>從你想完成的事開始，整合美業 × 科技 × 教育 × 療癒</p>
             <span></span>
           </div>
 
           <div class="service-grid reveal">
             <button class="service-card" type="button" data-modal="service-startup">
               <span class="service-icon">蓮</span>
-              <strong>SPA創業顧問</strong>
+              <strong>我想開SPA店</strong>
               <small>店面規劃<br />課程設計<br />獲利模式<br />會員制度</small>
             </button>
             <button class="service-card" type="button" data-modal="service-business">
               <span class="service-icon">鑰</span>
-              <strong>美業經營輔導</strong>
+              <strong>我想提升回購</strong>
               <small>提升來客數<br />提高回購率<br />打造穩定現金流<br />建立團隊制度</small>
             </button>
             <button class="service-card" type="button" data-modal="service-ai">
               <span class="service-icon">AI</span>
-              <strong>AI美業應用</strong>
+              <strong>我想導入AI</strong>
               <small>AI遊戲導客系統<br />AI票券系統<br />AI預約系統<br />AI一頁式網站</small>
             </button>
             <button class="service-card" type="button" data-modal="service-brand">
               <span class="service-icon">瓶</span>
-              <strong>品牌與產品開發</strong>
+              <strong>我想做品牌產品</strong>
               <small>美容產品OEM<br />品牌包裝設計<br />教育訓練課程開發<br />國際飯店SPA規劃</small>
             </button>
             <button class="service-card" type="button" data-modal="service-lucky">
               <span class="service-icon">竹</span>
-              <strong>幸運竹SPA<br />美萌台灣地圖</strong>
+              <strong>我想加入美業聯盟</strong>
               <small>串聯全台美業300名店<br />導客 × 教育 × 聯盟採購 × AI行銷</small>
             </button>
           </div>
@@ -282,7 +352,16 @@
               rel="noreferrer"
               data-toast="正在開啟官方 LINE"
             >
-              <span class="qr-mark" aria-hidden="true"></span>
+              <img
+                class="qr-code"
+                src="assets/line-official-qr.png"
+                width="540"
+                height="540"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                alt="官方 LINE QR Code"
+              />
               <strong>官方LINE</strong>
               <small>掃描或點擊加入</small>
             </a>
@@ -305,6 +384,8 @@
         <p class="dialog-kicker" data-dialog-kicker></p>
         <h2 id="dialog-title" data-dialog-title></h2>
         <p data-dialog-body></p>
+        <dl class="dialog-details" data-dialog-details hidden></dl>
+        <ul class="dialog-points" data-dialog-points></ul>
         <a class="dialog-action" href="#contact" data-dialog-action>聯絡王燕呢顧問</a>
       </div>
     </dialog>
