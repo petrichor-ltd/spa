@@ -15,9 +15,8 @@
     <script>
       (() => {
         try {
-          const storedTheme = localStorage.getItem("spa-theme");
-          const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-          document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+          const storedTheme = localStorage.getItem("spa-theme-v2");
+          document.documentElement.dataset.theme = storedTheme === "dark" ? "dark" : "light";
         } catch {
           document.documentElement.dataset.theme = "light";
         }
@@ -147,23 +146,24 @@
         <section class="authority-section section" id="authority" aria-labelledby="authority-title">
           <div class="authority-heading reveal">
             <p class="section-kicker">台灣SPA協會理事長 × 產業推動者</p>
-            <h2 id="authority-title">我推動的不是單一技術，而是美業能被信任、被傳承、被升級的制度。</h2>
+            <h2 id="authority-title">我把理事長的位置，用在三件真正能留下來的事。</h2>
+            <p class="authority-note">標準、人才與未來工具，都要回到同一個問題：美容人能不能被看見、被信任，並且走得更長久。</p>
           </div>
           <div class="authority-panel reveal" data-delay="120">
             <button class="authority-card" type="button" data-modal="authority-industry">
               <span>01</span>
-              <strong>產業推動</strong>
-              <small>建立SPA專業標準，串聯交流、教育與服務品質。</small>
+              <strong>把服務變成標準</strong>
+              <small>把SPA專業、倫理與服務品質整理成能被市場理解的語言。</small>
             </button>
             <button class="authority-card" type="button" data-modal="authority-talent">
               <span>02</span>
-              <strong>人才培育</strong>
-              <small>把第一線經驗整理成美容師、講師與創業者能接住的方法。</small>
+              <strong>把經驗交給下一代</strong>
+              <small>讓美容師、講師與創業者接得住方法，也接得住信心。</small>
             </button>
             <button class="authority-card" type="button" data-modal="authority-future">
               <span>03</span>
-              <strong>未來整合</strong>
-              <small>讓AI、品牌、自然療法與經營系統，成為美業升級工具。</small>
+              <strong>把科技留給人使用</strong>
+              <small>讓AI、品牌與經營系統成為工具，保留服務真正的溫度。</small>
             </button>
           </div>
         </section>

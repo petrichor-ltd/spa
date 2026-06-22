@@ -183,10 +183,11 @@ const progress = document.querySelector("[data-progress]");
 const backTop = document.querySelector("[data-back-top]");
 const themeToggle = document.querySelector("[data-theme-toggle]");
 let toastTimer;
+const themeStorageKey = "spa-theme-v2";
 
 const getStoredTheme = () => {
   try {
-    return localStorage.getItem("spa-theme");
+    return localStorage.getItem(themeStorageKey);
   } catch {
     return null;
   }
@@ -194,7 +195,7 @@ const getStoredTheme = () => {
 
 const setStoredTheme = (theme) => {
   try {
-    localStorage.setItem("spa-theme", theme);
+    localStorage.setItem(themeStorageKey, theme);
   } catch {
     // Storage can be unavailable in local file contexts; the current page still updates.
   }
@@ -210,8 +211,7 @@ const applyTheme = (theme) => {
   if (icon) icon.textContent = nextTheme === "dark" ? "☀" : "◐";
 };
 
-const systemPrefersDark = () => window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-applyTheme(getStoredTheme() || (systemPrefersDark() ? "dark" : "light"));
+applyTheme(getStoredTheme() || "light");
 
 const showToast = (message) => {
   if (!toast) return;
