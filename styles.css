@@ -1920,6 +1920,25 @@ img {
   line-height: 1.55;
 }
 
+.checkout-status {
+  padding: 9px 10px;
+  background: rgba(255, 246, 222, 0.08);
+  border: 1px solid rgba(239, 211, 143, 0.12);
+  border-radius: 4px;
+}
+
+.checkout-status[data-state="warning"] {
+  color: #ffe7a7;
+  background: rgba(244, 216, 145, 0.12);
+  border-color: rgba(244, 216, 145, 0.28);
+}
+
+.checkout-status[data-state="loading"] {
+  color: #fff6df;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
 .checkout-button {
   width: 100%;
   min-height: 48px;

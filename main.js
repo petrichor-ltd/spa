@@ -249,16 +249,23 @@ const applyTheme = (theme) => {
 
 applyTheme(getStoredTheme() || "light");
 
-const showToast = (message) => {
+const showToast = (message, duration = 1800) => {
   if (!toast) return;
   toast.textContent = message;
   toast.classList.add("is-visible");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), duration);
 };
 
 const syncModalOpenState = () => {
   document.body.classList.toggle("modal-open", Boolean(dialog?.open || previewDialog?.open));
+};
+
+const setCheckoutStatus = (message, state = "idle") => {
+  const status = document.querySelector("[data-checkout-status]");
+  if (!status) return;
+  status.textContent = message;
+  status.dataset.state = state;
 };
 
 const bookDetailLabels = ["核心主題", "適合讀者", "我想傳達的價值"];
@@ -413,7 +420,8 @@ const renderShopCart = () => {
   const cartTotal = document.querySelector("[data-cart-total]");
   const cartHint = document.querySelector("[data-cart-hint]");
   const checkoutButton = document.querySelector("[data-checkout-button]");
-  if (!cartItems || !cartEmpty || !cartCount || !cartTotal || !cartHint || !checkoutButton) return;
+  const checkoutStatus = document.querySelector("[data-checkout-status]");
+  if (!cartItems || !cartEmpty || !cartCount || !cartTotal || !cartHint || !checkoutButton || !checkoutStatus) return;
 
   const books = getShopSelection();
   const amount = getShopPrice(books.length);
@@ -437,6 +445,10 @@ const renderShopCart = () => {
   checkoutButton.disabled = amount === 0;
   checkoutButton.textContent = amount ? `點我結帳・NT$${amount}` : "點我結帳";
   checkoutButton.dataset.checkoutAmount = amount ? String(amount) : "";
+  checkoutStatus.dataset.state = amount && !payuniSigningEndpoint ? "warning" : "idle";
+  checkoutStatus.textContent = amount && !payuniSigningEndpoint
+    ? "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。"
+    : "結帳會呼叫後端簽章 API，由統一金流正式帶入金額。";
 
   document.querySelectorAll("[data-shop-source]").forEach((source) => {
     const id = source.getAttribute("data-shop-source");
@@ -527,7 +539,8 @@ const initBookShop = () => {
   checkoutButton.addEventListener("click", async () => {
     const order = buildShopOrder();
     if (!order.amount) {
-      showToast("請選擇 2 本或 4 本電子書後再結帳。");
+      setCheckoutStatus("請選擇 2 本或 4 本電子書後再結帳。", "warning");
+      showToast("請選擇 2 本或 4 本電子書後再結帳。", 3200);
       return;
     }
 
@@ -535,22 +548,30 @@ const initBookShop = () => {
     checkoutButton.classList.add("is-loading");
     try {
       if (!payuniSigningEndpoint) {
-        showToast("尚未設定金流簽章 API，無法自動帶入金額。");
+        const message = "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。";
+        setCheckoutStatus(message, "warning");
+        showToast(message, 5200);
         checkoutButton.disabled = false;
         checkoutButton.classList.remove("is-loading");
         return;
       }
+      setCheckoutStatus("正在建立付款資料，請稍候。", "loading");
       const signed = await requestSignedCheckout(order);
       if (signed?.fields && submitSignedPayuniForm(signed)) return;
       if (signed?.url) {
         window.location.href = signed.url;
         return;
       }
-      showToast("付款簽章回應格式不完整，請確認金流 API。");
+      setCheckoutStatus("付款簽章回應格式不完整，請確認金流 API。", "warning");
+      showToast("付款簽章回應格式不完整，請確認金流 API。", 4200);
       checkoutButton.disabled = false;
       checkoutButton.classList.remove("is-loading");
     } catch {
-      showToast(payuniSigningEndpoint ? "付款資料建立失敗，請稍後再試。" : "尚未設定金流簽章 API，無法自動帶入金額。");
+      const message = payuniSigningEndpoint
+        ? "付款資料建立失敗，請稍後再試。"
+        : "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。";
+      setCheckoutStatus(message, "warning");
+      showToast(message, 5200);
       checkoutButton.disabled = false;
       checkoutButton.classList.remove("is-loading");
     }
