@@ -200,7 +200,7 @@
           <div class="section-title-centered reveal">
             <span></span>
             <h2 id="books-title">著作出版</h2>
-            <p>10本書，不只是作品，而是我的美業知識地圖</p>
+            <p>精選著作與電子書，整理成可閱讀、收藏與實踐的知識地圖</p>
             <span></span>
           </div>
 
@@ -211,7 +211,7 @@
             </button>
             <button type="button" data-modal="book-nature">
               <span>自然療癒</span>
-              <strong>自然療法導師、四季面膜、自我按摩</strong>
+              <strong>自然療法導師、四季面膜</strong>
             </button>
             <button type="button" data-modal="book-meridian">
               <span>身心覺察</span>
@@ -272,12 +272,89 @@
                 <img src="img/S__21012502.jpg" alt="經絡藏著你的情緒書封" loading="lazy" />
                 <span>經絡，藏著你的情緒</span>
               </button>
-              <button class="book-card landscape-cover" type="button" data-modal="book-massage">
-                <img src="img/e7ec7a08-d4dd-4f5b-974c-8cde2050e219.png" alt="自我按摩書封" loading="lazy" />
-                <span>自我按摩</span>
-              </button>
             </div>
           </div>
+
+          <section class="book-shop reveal" id="book-shop" aria-labelledby="book-shop-title" data-book-shop data-payment-endpoint="">
+            <div class="book-shop-heading">
+              <p class="section-kicker">選購書籍</p>
+              <h3 id="book-shop-title">把想讀的電子書，拖進右側選購區。</h3>
+              <p>兩本 NT$300，四本 NT$500。手機版可直接點選「加入」。</p>
+            </div>
+
+            <div class="book-shop-layout">
+              <div class="book-shop-shelf" aria-label="可選購電子書">
+                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="spa">
+                  <img src="img/S__21012499.jpg" alt="SPA 境界電子書封面" loading="lazy" />
+                  <div>
+                    <span>電子書</span>
+                    <strong>SPA 境界</strong>
+                    <small>國際SPA視野、服務美學與品牌標準。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="spa">試閱書籍</button>
+                      <button type="button" data-add-book="spa">加入</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="ai">
+                  <img src="img/S__21012500.jpg" alt="AI 也在學做人電子書封面" loading="lazy" />
+                  <div>
+                    <span>電子書</span>
+                    <strong>AI 也在學做人</strong>
+                    <small>把AI變成美業經營與溫度服務的工具。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="ai">試閱書籍</button>
+                      <button type="button" data-add-book="ai">加入</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="code">
+                  <img src="img/S__21012501.jpg" alt="人生密碼電子書封面" loading="lazy" />
+                  <div>
+                    <span>電子書</span>
+                    <strong>人生密碼</strong>
+                    <small>從生命方向、關係與選擇看懂自己。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="code">試閱書籍</button>
+                      <button type="button" data-add-book="code">加入</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="meridian">
+                  <img src="img/S__21012502.jpg" alt="經絡藏著你的情緒電子書封面" loading="lazy" />
+                  <div>
+                    <span>電子書</span>
+                    <strong>經絡藏著你的情緒</strong>
+                    <small>讀懂經絡、情緒與身體壓力的訊號。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="meridian">試閱書籍</button>
+                      <button type="button" data-add-book="meridian">加入</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="book-cart" aria-label="選購區">
+                <div class="cart-dropzone" data-cart-dropzone>
+                  <p data-cart-empty>拖曳書籍到這裡，或從左側點選加入。</p>
+                  <div class="cart-items" data-cart-items aria-live="polite"></div>
+                </div>
+                <div class="cart-summary">
+                  <div>
+                    <span>目前選購</span>
+                    <strong data-cart-count>0 本</strong>
+                  </div>
+                  <div>
+                    <span>優惠金額</span>
+                    <strong data-cart-total>NT$0</strong>
+                  </div>
+                  <p data-cart-hint>選滿 2 本即可結帳。</p>
+                  <button class="checkout-button" type="button" data-checkout-button disabled>點我結帳</button>
+                  <small>結帳會呼叫後端簽章 API，由統一金流正式帶入金額。</small>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section class="services-section section" id="services" aria-labelledby="services-title">
@@ -387,6 +464,25 @@
         <dl class="dialog-details" data-dialog-details hidden></dl>
         <ul class="dialog-points" data-dialog-points></ul>
         <a class="dialog-action" href="#contact" data-dialog-action>聯絡王燕呢顧問</a>
+      </div>
+    </dialog>
+
+    <dialog class="preview-dialog" data-preview-dialog aria-labelledby="preview-title">
+      <div class="preview-card">
+        <div class="preview-head">
+          <div>
+            <p>試閱書籍</p>
+            <h2 id="preview-title" data-preview-title></h2>
+          </div>
+          <div class="preview-actions">
+            <a href="#" target="_blank" rel="noreferrer" data-preview-open>另開試閱</a>
+            <button class="dialog-close" type="button" aria-label="關閉試閱視窗" data-close-preview>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+        <iframe data-preview-frame title="書籍 PDF 試閱"></iframe>
       </div>
     </dialog>
 

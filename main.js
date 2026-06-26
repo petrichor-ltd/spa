@@ -108,35 +108,32 @@ const modalContent = {
     title: "Spa境界",
     body: "從身心療癒到品牌經營，談國際SPA的視野、標準化管理與服務美學。",
     points: ["整理SPA服務的專業語言、空間感、儀式感與顧客體驗。", "協助經營者理解國際SPA視野與在地品牌落地之間的轉譯。", "適合正在規劃SPA品牌、課程或門店升級的人。"],
-    actionLabel: "洽詢完整資料"
+    link: "#book-shop",
+    actionLabel: "前往選購"
   },
   "book-ai": {
     kicker: "電子書",
     title: "AI也在學做人",
     body: "我把AI視為理解顧客、陪伴團隊與創造美業新工具的助手，科技應該服務人，而不是取代人。",
     points: ["從美業現場的導客、預約、行銷與教育需求談AI應用。", "提醒科技不是冷冰冰的替代，而是幫助服務者更理解人。", "適合想把AI導入門店流程、內容經營與會員互動的團隊。"],
-    actionLabel: "洽詢完整資料"
+    link: "#book-shop",
+    actionLabel: "前往選購"
   },
   "book-code": {
     kicker: "電子書",
     title: "人生密碼",
     body: "透過生命方向、關係、工作與財運的探索，協助人看懂自己，也看懂選擇。",
     points: ["從生命方向、關係、工作與財運切入，協助讀者整理內在秩序。", "把抽象的人生課題轉成可以被理解、被選擇、被調整的線索。", "適合想進一步理解自我定位與生活決策的人。"],
-    actionLabel: "洽詢完整資料"
+    link: "#book-shop",
+    actionLabel: "前往選購"
   },
   "book-meridian": {
     kicker: "電子書",
     title: "經絡，藏著你的情緒",
     body: "透過經絡、五行與情緒語言，讀懂壓力如何在身體留下訊號，並找回身心平衡。",
     points: ["從經絡與情緒的互動，理解壓力如何反映在身體上。", "協助美容師在服務前後，更細緻地讀懂顧客狀態。", "適合想把身心平衡、經絡照護與諮詢能力整合進服務的人。"],
-    actionLabel: "洽詢完整資料"
-  },
-  "book-massage": {
-    kicker: "實體書",
-    title: "自我按摩",
-    body: "把自然按摩與自我照護整理成日常可實踐的方法，讓疲憊的身體重新鬆開。",
-    points: ["把按摩觀念轉成日常可操作的自我照護方式。", "適合課程教學、顧客居家保養延伸與身心放鬆練習。", "讓專業服務從門店延伸到顧客每天都能照顧自己的生活。"],
-    actionLabel: "洽詢完整資料"
+    link: "#book-shop",
+    actionLabel: "前往選購"
   },
   "service-startup": {
     kicker: "服務與專長",
@@ -178,12 +175,51 @@ const dialogDetails = document.querySelector("[data-dialog-details]");
 const dialogPoints = document.querySelector("[data-dialog-points]");
 const dialogAction = document.querySelector("[data-dialog-action]");
 const closeDialogButton = document.querySelector("[data-close-dialog]");
+const previewDialog = document.querySelector("[data-preview-dialog]");
+const previewTitle = document.querySelector("[data-preview-title]");
+const previewFrame = document.querySelector("[data-preview-frame]");
+const previewOpen = document.querySelector("[data-preview-open]");
+const closePreviewButton = document.querySelector("[data-close-preview]");
 const toast = document.querySelector("[data-toast]");
 const progress = document.querySelector("[data-progress]");
 const backTop = document.querySelector("[data-back-top]");
 const themeToggle = document.querySelector("[data-theme-toggle]");
 let toastTimer;
 const themeStorageKey = "spa-theme-v2";
+const payuniSigningEndpoint = document.querySelector("[data-book-shop]")?.dataset.paymentEndpoint?.trim() || "";
+
+const shopBooks = [
+  {
+    id: "spa",
+    title: "SPA 境界",
+    image: "img/S__21012499.jpg",
+    modal: "book-spa",
+    preview: "preview-books/spa-preview.pdf"
+  },
+  {
+    id: "ai",
+    title: "AI 也在學做人",
+    image: "img/S__21012500.jpg",
+    modal: "book-ai",
+    preview: "preview-books/ai-preview.pdf"
+  },
+  {
+    id: "code",
+    title: "人生密碼",
+    image: "img/S__21012501.jpg",
+    modal: "book-code",
+    preview: "preview-books/life-code-preview.pdf"
+  },
+  {
+    id: "meridian",
+    title: "經絡藏著你的情緒",
+    image: "img/S__21012502.jpg",
+    modal: "book-meridian",
+    preview: "preview-books/meridian-preview.pdf"
+  }
+];
+const shopBookMap = new Map(shopBooks.map((book) => [book.id, book]));
+const selectedShopBookIds = new Set();
 
 const getStoredTheme = () => {
   try {
@@ -219,6 +255,10 @@ const showToast = (message) => {
   toast.classList.add("is-visible");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+};
+
+const syncModalOpenState = () => {
+  document.body.classList.toggle("modal-open", Boolean(dialog?.open || previewDialog?.open));
 };
 
 const bookDetailLabels = ["核心主題", "適合讀者", "我想傳達的價值"];
@@ -271,7 +311,7 @@ const openDialog = (key) => {
   }
   dialogAction.textContent = content.actionLabel || "聯絡王燕呢顧問";
   dialogAction.href = content.link || "#contact";
-  if (content.link) {
+  if (content.link && !content.link.startsWith("#")) {
     dialogAction.target = "_blank";
     dialogAction.rel = "noreferrer";
   } else {
@@ -279,17 +319,249 @@ const openDialog = (key) => {
     dialogAction.removeAttribute("rel");
   }
   dialog.showModal();
-  document.body.classList.add("modal-open");
+  syncModalOpenState();
 };
 
 const closeDialog = () => {
   if (!dialog?.open) return;
   dialog.close();
-  document.body.classList.remove("modal-open");
+  syncModalOpenState();
+};
+
+const openPreview = (id) => {
+  const book = shopBookMap.get(id);
+  if (!book?.preview || !previewDialog || !previewTitle || !previewFrame || !previewOpen) return;
+  if (dialog?.open) closeDialog();
+  previewTitle.textContent = book.title;
+  previewFrame.title = `${book.title} PDF 試閱`;
+  previewFrame.src = `${book.preview}#toolbar=1&navpanes=0&view=FitH`;
+  previewOpen.href = book.preview;
+  previewOpen.setAttribute("aria-label", `另開 ${book.title} 試閱 PDF`);
+  previewDialog.showModal();
+  syncModalOpenState();
+};
+
+const closePreview = () => {
+  if (!previewDialog?.open) return;
+  previewDialog.close();
+  if (previewFrame) previewFrame.src = "about:blank";
+  syncModalOpenState();
+};
+
+const getShopSelection = () => Array.from(selectedShopBookIds).map((id) => shopBookMap.get(id)).filter(Boolean);
+
+const getShopPrice = (count) => {
+  if (count === 2) return 300;
+  if (count === 4) return 500;
+  return 0;
+};
+
+const getShopHint = (count) => {
+  if (count === 0) return "選滿 2 本即可結帳。";
+  if (count === 1) return "再加入 1 本，即可用 NT$300 結帳。";
+  if (count === 2) return "兩本優惠已成立，可直接結帳。";
+  if (count === 3) return "再加入 1 本，即可升級四本 NT$500。";
+  return "四本優惠已成立，可直接結帳。";
+};
+
+const buildShopOrder = () => {
+  const books = getShopSelection();
+  const amount = getShopPrice(books.length);
+  return {
+    amount,
+    count: books.length,
+    promotion: books.length === 4 ? "ebook_4_for_500" : "ebook_2_for_300",
+    books: books.map((book) => ({ id: book.id, title: book.title })),
+    description: books.map((book) => book.title).join("、"),
+    createdAt: new Date().toISOString()
+  };
+};
+
+const submitSignedPayuniForm = ({ action, method = "POST", fields = {} }) => {
+  if (!action || !fields || typeof fields !== "object") return false;
+  const form = document.createElement("form");
+  form.method = method;
+  form.action = action;
+  form.hidden = true;
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = String(value);
+    form.append(input);
+  });
+  document.body.append(form);
+  form.submit();
+  return true;
+};
+
+const requestSignedCheckout = async (order) => {
+  if (!payuniSigningEndpoint) return null;
+  const response = await fetch(payuniSigningEndpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(order)
+  });
+  if (!response.ok) throw new Error("Payment signing failed");
+  return response.json();
+};
+
+const renderShopCart = () => {
+  const cartItems = document.querySelector("[data-cart-items]");
+  const cartEmpty = document.querySelector("[data-cart-empty]");
+  const cartCount = document.querySelector("[data-cart-count]");
+  const cartTotal = document.querySelector("[data-cart-total]");
+  const cartHint = document.querySelector("[data-cart-hint]");
+  const checkoutButton = document.querySelector("[data-checkout-button]");
+  if (!cartItems || !cartEmpty || !cartCount || !cartTotal || !cartHint || !checkoutButton) return;
+
+  const books = getShopSelection();
+  const amount = getShopPrice(books.length);
+  cartItems.textContent = "";
+  cartEmpty.hidden = books.length > 0;
+
+  books.forEach((book) => {
+    const item = document.createElement("div");
+    item.className = "cart-item";
+    item.innerHTML = `
+      <img src="${book.image}" alt="" loading="lazy" />
+      <span>${book.title}</span>
+      <button type="button" data-remove-book="${book.id}" aria-label="移除 ${book.title}">移除</button>
+    `;
+    cartItems.append(item);
+  });
+
+  cartCount.textContent = `${books.length} 本`;
+  cartTotal.textContent = amount ? `NT$${amount}` : "NT$0";
+  cartHint.textContent = getShopHint(books.length);
+  checkoutButton.disabled = amount === 0;
+  checkoutButton.textContent = amount ? `點我結帳・NT$${amount}` : "點我結帳";
+  checkoutButton.dataset.checkoutAmount = amount ? String(amount) : "";
+
+  document.querySelectorAll("[data-shop-source]").forEach((source) => {
+    const id = source.getAttribute("data-shop-source");
+    const isSelected = selectedShopBookIds.has(id);
+    source.classList.toggle("is-selected", isSelected);
+  });
+
+  document.querySelectorAll("[data-add-book]").forEach((button) => {
+    const id = button.getAttribute("data-add-book");
+    const isSelected = selectedShopBookIds.has(id);
+    button.textContent = isSelected ? "已加入" : "加入";
+    button.disabled = isSelected;
+  });
+};
+
+const addShopBook = (id) => {
+  if (!shopBookMap.has(id)) return;
+  if (selectedShopBookIds.has(id)) {
+    showToast("這本書已在選購區。");
+    return;
+  }
+  if (selectedShopBookIds.size >= 4) {
+    showToast("四本優惠已選滿。");
+    return;
+  }
+  selectedShopBookIds.add(id);
+  renderShopCart();
+  showToast("已加入選購區。");
+};
+
+const removeShopBook = (id) => {
+  selectedShopBookIds.delete(id);
+  renderShopCart();
+  showToast("已從選購區移除。");
+};
+
+const initBookShop = () => {
+  const dropzone = document.querySelector("[data-cart-dropzone]");
+  const checkoutButton = document.querySelector("[data-checkout-button]");
+  if (!dropzone || !checkoutButton) return;
+
+  document.querySelectorAll("[data-shop-source]").forEach((source) => {
+    source.addEventListener("dragstart", (event) => {
+      const id = source.getAttribute("data-shop-source");
+      if (!id || !event.dataTransfer) return;
+      event.dataTransfer.effectAllowed = "copy";
+      event.dataTransfer.setData("text/plain", id);
+      source.classList.add("is-dragging");
+    });
+
+    source.addEventListener("dragend", () => {
+      source.classList.remove("is-dragging");
+    });
+
+    source.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      addShopBook(source.getAttribute("data-shop-source"));
+    });
+  });
+
+  dropzone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    dropzone.classList.add("is-over");
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+  });
+
+  dropzone.addEventListener("dragleave", (event) => {
+    if (!dropzone.contains(event.relatedTarget)) dropzone.classList.remove("is-over");
+  });
+
+  dropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    dropzone.classList.remove("is-over");
+    addShopBook(event.dataTransfer?.getData("text/plain"));
+  });
+
+  document.querySelectorAll("[data-add-book]").forEach((button) => {
+    button.addEventListener("click", () => addShopBook(button.getAttribute("data-add-book")));
+  });
+
+  dropzone.addEventListener("click", (event) => {
+    const removeButton = event.target.closest("[data-remove-book]");
+    if (!removeButton) return;
+    removeShopBook(removeButton.getAttribute("data-remove-book"));
+  });
+
+  checkoutButton.addEventListener("click", async () => {
+    const order = buildShopOrder();
+    if (!order.amount) {
+      showToast("請選擇 2 本或 4 本電子書後再結帳。");
+      return;
+    }
+
+    checkoutButton.disabled = true;
+    checkoutButton.classList.add("is-loading");
+    try {
+      if (!payuniSigningEndpoint) {
+        showToast("尚未設定金流簽章 API，無法自動帶入金額。");
+        checkoutButton.disabled = false;
+        checkoutButton.classList.remove("is-loading");
+        return;
+      }
+      const signed = await requestSignedCheckout(order);
+      if (signed?.fields && submitSignedPayuniForm(signed)) return;
+      if (signed?.url) {
+        window.location.href = signed.url;
+        return;
+      }
+      showToast("付款簽章回應格式不完整，請確認金流 API。");
+      checkoutButton.disabled = false;
+      checkoutButton.classList.remove("is-loading");
+    } catch {
+      showToast(payuniSigningEndpoint ? "付款資料建立失敗，請稍後再試。" : "尚未設定金流簽章 API，無法自動帶入金額。");
+      checkoutButton.disabled = false;
+      checkoutButton.classList.remove("is-loading");
+    }
+  });
+
+  renderShopCart();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(() => document.body.classList.add("is-loaded"));
+  initBookShop();
 });
 
 const revealObserver = new IntersectionObserver(
@@ -329,6 +601,10 @@ document.querySelectorAll("[data-modal]").forEach((button) => {
   button.addEventListener("click", () => openDialog(button.dataset.modal));
 });
 
+document.querySelectorAll("[data-preview-book]").forEach((button) => {
+  button.addEventListener("click", () => openPreview(button.dataset.previewBook));
+});
+
 themeToggle?.addEventListener("click", () => {
   const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   applyTheme(nextTheme);
@@ -348,17 +624,29 @@ document.querySelectorAll("a[data-toast]").forEach((link) => {
 });
 
 closeDialogButton?.addEventListener("click", closeDialog);
+closePreviewButton?.addEventListener("click", closePreview);
 
 dialog?.addEventListener("click", (event) => {
   if (event.target === dialog) closeDialog();
 });
 
 dialog?.addEventListener("close", () => {
-  document.body.classList.remove("modal-open");
+  syncModalOpenState();
+});
+
+previewDialog?.addEventListener("click", (event) => {
+  if (event.target === previewDialog) closePreview();
+});
+
+previewDialog?.addEventListener("close", () => {
+  if (previewFrame) previewFrame.src = "about:blank";
+  syncModalOpenState();
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeDialog();
+  if (event.key !== "Escape") return;
+  closeDialog();
+  closePreview();
 });
 
 window.addEventListener(
