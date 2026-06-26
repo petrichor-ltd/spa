@@ -186,6 +186,7 @@ const backTop = document.querySelector("[data-back-top]");
 const themeToggle = document.querySelector("[data-theme-toggle]");
 let toastTimer;
 const themeStorageKey = "spa-theme-v2";
+const payuniFallbackPaymentUrl = "https://api.payuni.com.tw/api/uop/receive_info/2/1/BNNL27809884/GLeUenL68pDHZWBUlFdV";
 const payuniSigningEndpoint = document.querySelector("[data-book-shop]")?.dataset.paymentEndpoint?.trim() || "";
 
 const shopBooks = [
@@ -384,6 +385,15 @@ const buildShopOrder = () => {
   };
 };
 
+const buildFallbackPaymentUrl = (order) => {
+  const url = new URL(payuniFallbackPaymentUrl);
+  url.searchParams.set("amount", String(order.amount));
+  url.searchParams.set("items", order.description);
+  url.searchParams.set("package", order.promotion);
+  url.searchParams.set("source", "wang-yanni-ebook-shop");
+  return url.toString();
+};
+
 const submitSignedPayuniForm = ({ action, method = "POST", fields = {} }) => {
   if (!action || !fields || typeof fields !== "object") return false;
   const form = document.createElement("form");
@@ -447,7 +457,7 @@ const renderShopCart = () => {
   checkoutButton.dataset.checkoutAmount = amount ? String(amount) : "";
   checkoutStatus.dataset.state = amount && !payuniSigningEndpoint ? "warning" : "idle";
   checkoutStatus.textContent = amount && !payuniSigningEndpoint
-    ? "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。"
+    ? "目前先開啟一般收款頁；正式自動帶入金額需後端簽章 API。"
     : "結帳會呼叫後端簽章 API，由統一金流正式帶入金額。";
 
   document.querySelectorAll("[data-shop-source]").forEach((source) => {
@@ -548,11 +558,10 @@ const initBookShop = () => {
     checkoutButton.classList.add("is-loading");
     try {
       if (!payuniSigningEndpoint) {
-        const message = "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。";
+        const message = "正在開啟一般收款頁；若金額未自動帶入，請以畫面顯示金額為準。";
         setCheckoutStatus(message, "warning");
-        showToast(message, 5200);
-        checkoutButton.disabled = false;
-        checkoutButton.classList.remove("is-loading");
+        showToast(message, 2600);
+        window.location.href = buildFallbackPaymentUrl(order);
         return;
       }
       setCheckoutStatus("正在建立付款資料，請稍候。", "loading");
@@ -569,7 +578,7 @@ const initBookShop = () => {
     } catch {
       const message = payuniSigningEndpoint
         ? "付款資料建立失敗，請稍後再試。"
-        : "尚未設定金流簽章 API；目前不會跳轉，避免付款頁金額空白。";
+        : "無法開啟一般收款頁，請稍後再試。";
       setCheckoutStatus(message, "warning");
       showToast(message, 5200);
       checkoutButton.disabled = false;
