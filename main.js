@@ -185,11 +185,21 @@ const checkoutConfirmBooks = document.querySelector("[data-checkout-confirm-book
 const checkoutConfirmAmount = document.querySelector("[data-checkout-confirm-amount]");
 const checkoutManualAmount = document.querySelector("[data-checkout-manual-amount]");
 const checkoutProceedButton = document.querySelector("[data-checkout-proceed]");
-const toast = document.querySelector("[data-toast]");
+const toast = document.querySelector(".toast[data-toast]");
 const progress = document.querySelector("[data-progress]");
 const backTop = document.querySelector("[data-back-top]");
 const themeToggle = document.querySelector("[data-theme-toggle]");
+const menuToggle = document.querySelector("[data-menu-toggle]");
+const siteNav = document.querySelector("[data-site-nav]");
+const mobileCartBar = document.querySelector("[data-mobile-cart]");
+const mobileCartCount = document.querySelector("[data-mobile-cart-count]");
+const mobileCartTotal = document.querySelector("[data-mobile-cart-total]");
+const mobileCheckoutButton = document.querySelector("[data-mobile-checkout]");
+const bookShopSection = document.querySelector("[data-book-shop]");
+const navSections = Array.from(document.querySelectorAll("[data-nav-section]"));
+const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
 let toastTimer;
+let isBookShopInView = false;
 const themeStorageKey = "spa-theme-v2";
 const payuniFallbackPaymentUrl = "https://api.payuni.com.tw/api/uop/receive_info/2/1/BNNL27809884/GLeUenL68pDHZWBUlFdV";
 const payuniSigningEndpoint = document.querySelector("[data-book-shop]")?.dataset.paymentEndpoint?.trim() || "";
@@ -247,11 +257,35 @@ const setStoredTheme = (theme) => {
 const applyTheme = (theme) => {
   const nextTheme = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = nextTheme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#0f1914" : "#fffaf2");
   if (!themeToggle) return;
   themeToggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
   themeToggle.setAttribute("aria-label", nextTheme === "dark" ? "切換為淺色模式" : "切換為深色模式");
   const icon = themeToggle.querySelector("span");
   if (icon) icon.textContent = nextTheme === "dark" ? "☀" : "◐";
+};
+
+const setMenuOpen = (isOpen) => {
+  if (!menuToggle || !siteNav) return;
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
+  siteNav.classList.toggle("is-open", isOpen);
+  document.body.classList.toggle("menu-open", isOpen);
+};
+
+const updateActiveNavigation = () => {
+  const probe = window.scrollY + Math.min(240, window.innerHeight * 0.32);
+  let activeId = "";
+  navSections.forEach((section) => {
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    if (sectionTop <= probe) activeId = section.id;
+  });
+  navLinks.forEach((link) => {
+    const isActive = Boolean(activeId) && link.getAttribute("href") === `#${activeId}`;
+    link.classList.toggle("is-active", isActive);
+    if (isActive) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
 };
 
 applyTheme(getStoredTheme() || "light");
@@ -384,6 +418,17 @@ const getShopHint = (count) => {
   return "四本優惠已成立，可直接結帳。";
 };
 
+const renderMobileCart = (books, amount) => {
+  if (!mobileCartBar || !mobileCartCount || !mobileCartTotal || !mobileCheckoutButton) return;
+  const hasBooks = books.length > 0;
+  mobileCartBar.hidden = !hasBooks;
+  mobileCartBar.classList.toggle("is-visible", hasBooks && isBookShopInView);
+  mobileCartCount.textContent = `${books.length} 本電子書`;
+  mobileCartTotal.textContent = amount ? `NT$${amount}` : getShopHint(books.length);
+  mobileCheckoutButton.disabled = amount === 0;
+  mobileCheckoutButton.textContent = amount ? `確認訂單・NT$${amount}` : "尚未符合優惠";
+};
+
 const buildShopOrder = () => {
   const books = getShopSelection();
   const amount = getShopPrice(books.length);
@@ -471,6 +516,8 @@ const renderShopCart = () => {
   checkoutStatus.textContent = amount && !payuniSigningEndpoint
     ? `付款頁若未自動帶入，請手動輸入 NT$${amount}；付款後請回 LINE 傳送核對資料。`
     : "付款頁若未自動帶入金額，結帳前會再次顯示正確金額。";
+
+  renderMobileCart(books, amount);
 
   document.querySelectorAll("[data-shop-source]").forEach((source) => {
     const id = source.getAttribute("data-shop-source");
@@ -566,39 +613,12 @@ const initBookShop = () => {
   if (!dropzone || !checkoutButton) return;
 
   document.querySelectorAll("[data-shop-source]").forEach((source) => {
-    source.addEventListener("dragstart", (event) => {
-      const id = source.getAttribute("data-shop-source");
-      if (!id || !event.dataTransfer) return;
-      event.dataTransfer.effectAllowed = "copy";
-      event.dataTransfer.setData("text/plain", id);
-      source.classList.add("is-dragging");
-    });
-
-    source.addEventListener("dragend", () => {
-      source.classList.remove("is-dragging");
-    });
-
     source.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
+      if (event.target.closest("button, a")) return;
       event.preventDefault();
       addShopBook(source.getAttribute("data-shop-source"));
     });
-  });
-
-  dropzone.addEventListener("dragover", (event) => {
-    event.preventDefault();
-    dropzone.classList.add("is-over");
-    if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
-  });
-
-  dropzone.addEventListener("dragleave", (event) => {
-    if (!dropzone.contains(event.relatedTarget)) dropzone.classList.remove("is-over");
-  });
-
-  dropzone.addEventListener("drop", (event) => {
-    event.preventDefault();
-    dropzone.classList.remove("is-over");
-    addShopBook(event.dataTransfer?.getData("text/plain"));
   });
 
   document.querySelectorAll("[data-add-book]").forEach((button) => {
@@ -611,7 +631,7 @@ const initBookShop = () => {
     removeShopBook(removeButton.getAttribute("data-remove-book"));
   });
 
-  checkoutButton.addEventListener("click", () => {
+  const requestCheckout = () => {
     const order = buildShopOrder();
     if (!order.amount) {
       setCheckoutStatus("請選擇 2 本或 4 本電子書後再結帳。", "warning");
@@ -619,7 +639,10 @@ const initBookShop = () => {
       return;
     }
     openCheckoutDialog(order);
-  });
+  };
+
+  checkoutButton.addEventListener("click", requestCheckout);
+  mobileCheckoutButton?.addEventListener("click", requestCheckout);
 
   checkoutProceedButton?.addEventListener("click", () => beginCheckout(pendingCheckoutOrder, checkoutButton));
 
@@ -627,24 +650,42 @@ const initBookShop = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  requestAnimationFrame(() => document.body.classList.add("is-loaded"));
+  requestAnimationFrame(() => {
+    document.body.classList.add("is-loaded");
+    updateActiveNavigation();
+  });
   initBookShop();
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const delay = entry.target.getAttribute("data-delay");
-      if (delay) entry.target.style.setProperty("--delay", `${delay}ms`);
-      entry.target.classList.add("is-visible");
-      revealObserver.unobserve(entry.target);
-    });
-  },
-  { threshold: 0.16 }
-);
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const delay = entry.target.getAttribute("data-delay");
+        if (delay) entry.target.style.setProperty("--delay", `${delay}ms`);
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
 
-document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+  if (bookShopSection) {
+    const shopObserver = new IntersectionObserver(
+      ([entry]) => {
+        isBookShopInView = entry.isIntersecting;
+        const books = getShopSelection();
+        renderMobileCart(books, getShopPrice(books.length));
+      },
+      { rootMargin: "-8% 0px -8%", threshold: 0.01 }
+    );
+    shopObserver.observe(bookShopSection);
+  }
+} else {
+  document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+}
 
 document.querySelectorAll("a[href^='#']").forEach((anchor) => {
   anchor.addEventListener("click", (event) => {
@@ -659,6 +700,7 @@ document.querySelectorAll("a[href^='#']").forEach((anchor) => {
     if (!target) return;
     event.preventDefault();
     if (dialog?.open) closeDialog();
+    setMenuOpen(false);
     target.scrollIntoView({ behavior: "smooth", block: "start" });
     if (hash === "#contact") showToast("已前往聯絡區。");
   });
@@ -677,6 +719,10 @@ themeToggle?.addEventListener("click", () => {
   applyTheme(nextTheme);
   setStoredTheme(nextTheme);
   showToast(nextTheme === "dark" ? "已切換為深色模式。" : "已切換為淺色模式。");
+});
+
+menuToggle?.addEventListener("click", () => {
+  setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
 });
 
 backTop?.addEventListener("click", () => {
@@ -721,6 +767,7 @@ checkoutDialog?.addEventListener("close", () => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
+  setMenuOpen(false);
   closeDialog();
   closePreview();
   closeCheckoutDialog();
@@ -733,6 +780,7 @@ window.addEventListener(
     const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
     if (progress) progress.style.width = `${ratio * 100}%`;
     backTop?.classList.toggle("is-visible", window.scrollY > 560);
+    updateActiveNavigation();
   },
   { passive: true }
 );

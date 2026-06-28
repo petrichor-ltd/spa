@@ -3,17 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>王燕呢｜美業教育・SPA顧問・AI美業應用</title>
+    <title>王燕呢｜美業教育・SPA顧問・電子書</title>
     <meta
       name="description"
-      content="王燕呢顧問個人單頁網站。台灣SPA協會理事長、志麗美容科技有限公司董事長、幸運竹SPA創建者、10本書作者。"
+      content="王燕呢顧問官方網站。40年美業實戰、SPA創業與品牌顧問、美業教育、AI應用與電子書選購。"
     />
+    <meta name="theme-color" content="#fffaf2" />
+    <link rel="canonical" href="https://spa.petrichor.tw/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
     <meta property="og:title" content="王燕呢｜整理成下一代美容人的路" />
-    <meta property="og:description" content="40年美業實戰、SPA創業顧問、美業經營輔導、AI美業應用與著作出版。" />
+    <meta property="og:description" content="40年美業實戰、SPA創業顧問、美業經營輔導、AI美業應用與電子書。" />
     <meta property="og:type" content="website" />
-    <link rel="preload" href="assets/hero-exact-scene.png" as="image" />
+    <meta property="og:url" content="https://spa.petrichor.tw/" />
+    <meta property="og:image" content="https://spa.petrichor.tw/assets/hero-exact-scene.png" />
+    <meta property="og:image:width" content="1774" />
+    <meta property="og:image:height" content="887" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="王燕呢｜整理成下一代美容人的路" />
+    <meta name="twitter:description" content="美業教育、SPA顧問、品牌經營與電子書。" />
+    <meta name="twitter:image" content="https://spa.petrichor.tw/assets/hero-exact-scene.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="assets/hero-exact-scene.webp" as="image" type="image/webp" />
+
     <script>
       (() => {
+        document.documentElement.classList.add("js");
         try {
           const storedTheme = localStorage.getItem("spa-theme-v2");
           document.documentElement.dataset.theme = storedTheme === "dark" ? "dark" : "light";
@@ -22,272 +44,202 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260628-line-flow" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://spa.petrichor.tw/#person",
+            "name": "王燕呢",
+            "url": "https://spa.petrichor.tw/",
+            "jobTitle": "SPA產業顧問與美業教育者",
+            "description": "台灣SPA協會理事長，40年美業實戰經驗，提供SPA創業、品牌經營、美業教育與AI應用顧問服務。",
+            "email": "mailto:ubodyspa@gmail.com",
+            "telephone": "+886-3-321-7766"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://spa.petrichor.tw/#organization",
+            "name": "王燕呢美業顧問",
+            "url": "https://spa.petrichor.tw/",
+            "founder": { "@id": "https://spa.petrichor.tw/#person" }
+          },
+          {
+            "@type": "ItemList",
+            "name": "王燕呢電子書",
+            "itemListElement": [
+              { "@type": "Book", "position": 1, "name": "SPA 境界", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 2, "name": "AI 也在學做人", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 3, "name": "人生密碼", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 4, "name": "經絡藏著你的情緒", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <link rel="stylesheet" href="styles.css?v=20260628-dual-path" />
   </head>
   <body>
-    <a class="skip-link" href="#about">跳至主要內容</a>
+    <a class="skip-link" href="#main-content">跳至主要內容</a>
     <div class="reading-progress" aria-hidden="true"><span data-progress></span></div>
 
     <div class="page-shell" id="top">
       <header class="site-header" data-header>
-        <a class="brand" href="#top" aria-label="回到首頁">
-          <span class="brand-name">王燕呢</span>
-          <span class="brand-sub">美容教育 × SPA產業 × 身心平衡</span>
-        </a>
-        <nav class="site-nav" aria-label="主要導覽">
-          <a href="#about">關於我</a>
-          <a href="#authority">產業高度</a>
-          <a href="#journey">專業歷程</a>
-          <a href="#books">著作出版</a>
-          <a href="#services">服務與專長</a>
-          <a href="#contact">聯絡我</a>
-        </nav>
-        <div class="header-actions">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切換深淺色模式" aria-pressed="false">
-            <span aria-hidden="true">◐</span>
-          </button>
-          <a class="lotus-link" href="#contact" aria-label="聯絡王燕呢顧問">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <path d="M24 38c7-5 11-11 11-18-6 1-10 4-11 10-1-6-5-9-11-10 0 7 4 13 11 18Z" />
-              <path d="M24 29c4-5 4-11 0-17-4 6-4 12 0 17Z" />
-              <path d="M9 37h30" />
-            </svg>
+        <div class="header-inner">
+          <a class="brand" href="#top" aria-label="回到首頁">
+            <span class="brand-name">王燕呢</span>
+            <span class="brand-sub">美容教育 × SPA產業 × 身心平衡</span>
           </a>
+
+          <nav class="site-nav" id="site-nav" aria-label="主要導覽" data-site-nav>
+            <a href="#authority" data-nav-link>產業高度</a>
+            <a href="#services" data-nav-link>服務與專長</a>
+            <a href="#books" data-nav-link>著作出版</a>
+            <a href="#about" data-nav-link>專業歷程</a>
+            <a href="#contact" data-nav-link>聯絡我</a>
+          </nav>
+
+          <div class="header-actions">
+            <a
+              class="header-line-link"
+              href="https://lin.ee/XXL9DlJ"
+              target="_blank"
+              rel="noreferrer"
+              data-toast="正在開啟官方 LINE"
+            >
+              <span aria-hidden="true">LINE</span>
+              <strong>聯絡我</strong>
+            </a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="切換深淺色模式" aria-pressed="false">
+              <span aria-hidden="true">◐</span>
+            </button>
+            <button
+              class="menu-toggle"
+              type="button"
+              aria-label="開啟導覽選單"
+              aria-controls="site-nav"
+              aria-expanded="false"
+              data-menu-toggle
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </header>
 
-      <main>
-        <section class="hero hero-generated" aria-labelledby="hero-title">
+      <main id="main-content">
+        <section class="hero" aria-labelledby="hero-title">
           <div class="hero-inner">
             <div class="hero-copy">
               <p class="hero-handwriting">我把40年美業實戰，</p>
               <h1 id="hero-title">整理成下一代<br />美容人的路。</h1>
               <p class="hero-signature">王燕呢</p>
-              <div class="hero-proof" aria-label="專業定位">
-                <button type="button" data-modal="authority-industry">產業標準</button>
-                <button type="button" data-modal="authority-talent">人才培育</button>
-                <button type="button" data-modal="authority-future">AI整合</button>
-              </div>
-              <div class="hero-actions" aria-label="Banner 快速操作">
-                <button type="button" data-modal="timeline-chair">
-                  <span>理</span>
-                  <strong>台灣SPA協會理事長</strong>
-                </button>
-                <button type="button" data-modal="service-brand">
-                  <span>董</span>
-                  <strong>志麗美容科技有限公司董事長</strong>
-                </button>
-                <button type="button" data-modal="service-lucky">
-                  <span>創</span>
-                  <strong>幸運竹SPA創建者</strong>
-                </button>
-                <button type="button" data-modal="book-aesthetic">
-                  <span>著</span>
-                  <strong>10本書作者</strong>
-                </button>
+              <p class="hero-proof">台灣SPA協會理事長 <span>×</span> 志麗美容科技有限公司董事長 <span>×</span> 幸運竹SPA創建者</p>
+              <div class="hero-cta" aria-label="網站主要入口">
+                <a class="button button-primary" href="#services">
+                  找顧問／合作
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+                </a>
+                <a class="button button-secondary" href="#book-shop">
+                  選購電子書
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+                </a>
               </div>
             </div>
             <p class="hero-vertical-quote">專業，是我的起點；<br />陪伴，是我的使命。</p>
           </div>
-          <a class="scroll-cue" href="#about" aria-label="往下閱讀">
+          <a class="scroll-cue" href="#authority" aria-label="往下閱讀">
             <span></span>
             <strong>SCROLL DOWN</strong>
           </a>
         </section>
 
-        <section class="journey-section section" id="about" aria-labelledby="about-title">
-          <div class="section-copy reveal">
-            <p class="section-kicker">專業歷程 × 我的信念</p>
-            <h2 id="about-title">美，從理解生命開始</h2>
-            <p>
-              40年美業實戰經驗，從第一線美容師出發，歷經店長、教育講師、創業者、品牌經營者，到台灣SPA協會理事長。
-            </p>
-            <p>
-              我深知美業人的辛苦，因此更希望把走過的路、踩過的坑、累積的智慧，分享給下一代優秀美容師。
-            </p>
-            <p>真正的美，不只是外在的修飾，而是內在平衡後自然散發的光彩。</p>
-          </div>
-
-          <div class="journey-manuscript reveal" id="journey" data-delay="120">
-            <p class="manuscript-line">我不是從頭銜開始，而是從一次一次替顧客整理身心開始。</p>
-            <div class="story-seals" aria-label="王燕呢老師專業路徑">
-              <button class="story-seal" type="button" data-modal="timeline-beautician">
-                <span>01</span>
-                <strong>第一線美容師</strong>
-                <small>先學會聽懂顧客，再談技術與美感。</small>
-              </button>
-              <button class="story-seal" type="button" data-modal="timeline-educator">
-                <span>02</span>
-                <strong>教育講師</strong>
-                <small>把手感、服務與判斷整理成能被傳承的方法。</small>
-              </button>
-              <button class="story-seal" type="button" data-modal="timeline-founder">
-                <span>03</span>
-                <strong>品牌創業者</strong>
-                <small>從單次療程，走向品牌、團隊與穩定經營。</small>
-              </button>
-              <button class="story-seal" type="button" data-modal="timeline-consultant">
-                <span>04</span>
-                <strong>SPA顧問</strong>
-                <small>把國際視野轉成台灣店家能落地的流程。</small>
-              </button>
-              <button class="story-seal" type="button" data-modal="timeline-chair">
-                <span>05</span>
-                <strong>台灣SPA協會理事長</strong>
-                <small>讓產業標準、教育與下一代人才一起往前。</small>
-              </button>
-            </div>
-            <p class="manuscript-quote">每一步都不是履歷，而是一個人被好好照顧後留下的回音。</p>
-          </div>
-
-          <div class="mountains" aria-hidden="true"></div>
-        </section>
-
-        <section class="authority-section section" id="authority" aria-labelledby="authority-title">
-          <div class="authority-heading reveal">
-            <p class="section-kicker">台灣SPA協會理事長 × 產業推動者</p>
+        <section class="authority-section section" id="authority" aria-labelledby="authority-title" data-nav-section>
+          <div class="authority-intro reveal">
+            <p class="section-kicker">產業高度</p>
             <h2 id="authority-title">我把理事長的位置，用在三件真正能留下來的事。</h2>
-            <p class="authority-note">標準、人才與未來工具，都要回到同一個問題：美容人能不能被看見、被信任，並且走得更長久。</p>
+            <p>標準、人才與未來工具，都要回到同一個問題：美容人能不能被看見、被信任，並且走得更長久。</p>
           </div>
-          <div class="authority-panel reveal" data-delay="120">
-            <button class="authority-card" type="button" data-modal="authority-industry">
+          <div class="authority-pillars reveal" data-delay="100">
+            <article>
               <span>01</span>
-              <strong>把服務變成標準</strong>
-              <small>把SPA專業、倫理與服務品質整理成能被市場理解的語言。</small>
-            </button>
-            <button class="authority-card" type="button" data-modal="authority-talent">
+              <h3>把服務變成標準</h3>
+              <p>把SPA專業、倫理與服務品質，整理成能被市場理解的語言。</p>
+            </article>
+            <article>
               <span>02</span>
-              <strong>把經驗交給下一代</strong>
-              <small>讓美容師、講師與創業者接得住方法，也接得住信心。</small>
-            </button>
-            <button class="authority-card" type="button" data-modal="authority-future">
+              <h3>把經驗交給下一代</h3>
+              <p>讓美容師、講師與創業者接得住方法，也接得住信心。</p>
+            </article>
+            <article>
               <span>03</span>
-              <strong>把科技留給人使用</strong>
-              <small>讓AI、品牌與經營系統成為工具，保留服務真正的溫度。</small>
+              <h3>把科技留給人使用</h3>
+              <p>讓AI、品牌與經營系統成為工具，保留服務真正的溫度。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="services-section section" id="services" aria-labelledby="services-title" data-nav-section>
+          <div class="services-intro reveal">
+            <p class="section-kicker">服務與專長</p>
+            <h2 id="services-title">依你當下的目標，找到最適合的專業陪伴。</h2>
+            <p>從開店、提升回購到導入AI與品牌產品，陪你走得更穩、更遠。</p>
+            <a class="button button-primary services-contact" href="#contact">預約免費諮詢</a>
+          </div>
+          <div class="service-list reveal" data-delay="100">
+            <button type="button" data-modal="service-startup">
+              <span>01</span>
+              <strong>開SPA店</strong>
+              <small>建立可落地的開店計畫、課程與營運系統</small>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+            </button>
+            <button type="button" data-modal="service-business">
+              <span>02</span>
+              <strong>提升回購</strong>
+              <small>設計回購機制與會員經營，提升忠誠與業績</small>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+            </button>
+            <button type="button" data-modal="service-ai">
+              <span>03</span>
+              <strong>導入AI</strong>
+              <small>用AI優化流程與體驗，讓團隊更有效率</small>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+            </button>
+            <button type="button" data-modal="service-brand">
+              <span>04</span>
+              <strong>做品牌產品</strong>
+              <small>打造專屬產品策略，創造品牌價值與利潤</small>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+            </button>
+            <button type="button" data-modal="service-lucky">
+              <span>05</span>
+              <strong>加入美業聯盟</strong>
+              <small>連結資源與人脈，擴大影響力與合作機會</small>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
             </button>
           </div>
         </section>
 
-        <section class="belief-section" aria-labelledby="belief-title">
-          <div class="belief-brush reveal">
-            <h2 id="belief-title">我的核心信念</h2>
-            <div class="belief-grid">
-              <button type="button" data-modal="belief-see">
-                <span class="belief-icon">蓮</span>
-                <strong>看見每一個人</strong>
-                <small>理解情緒與需求，<br />看見真正的你</small>
-              </button>
-              <button type="button" data-modal="belief-care">
-                <span class="belief-icon">心</span>
-                <strong>陪伴與療癒</strong>
-                <small>在美的過程中，<br />陪伴身心一起成長</small>
-              </button>
-              <button type="button" data-modal="belief-integrate">
-                <span class="belief-icon">合</span>
-                <strong>專業與整合</strong>
-                <small>結合美學、自然療法、<br />科技與經營智慧</small>
-              </button>
-              <button type="button" data-modal="belief-inherit">
-                <span class="belief-icon">星</span>
-                <strong>傳承與共好</strong>
-                <small>成就年輕世代，<br />創造美業新價值</small>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="books-section section" id="books" aria-labelledby="books-title">
-          <div class="section-title-centered reveal">
-            <span></span>
-            <h2 id="books-title">著作出版</h2>
-            <p>精選著作與電子書，整理成可閱讀、收藏與實踐的知識地圖</p>
-            <span></span>
+        <section class="books-section section" id="books" aria-labelledby="books-title" data-nav-section>
+          <div class="books-heading reveal">
+            <p class="section-kicker">著作出版</p>
+            <h2 id="books-title">精選電子書，陪伴你的自我成長之旅。</h2>
+            <p>融合美學、身心覺察與自然療法的實踐智慧，兩本 NT$300，四本 NT$500。</p>
           </div>
 
-          <div class="knowledge-map reveal" aria-label="王燕呢老師著作思想體系">
-            <button type="button" data-modal="book-aesthetic">
-              <span>美學與經營</span>
-              <strong>打造美學視角、 美容成功心法</strong>
-            </button>
-            <button type="button" data-modal="book-nature">
-              <span>自然療癒</span>
-              <strong>自然療法導師、四季面膜</strong>
-            </button>
-            <button type="button" data-modal="book-meridian">
-              <span>身心覺察</span>
-              <strong>經絡情緒、人生密碼</strong>
-            </button>
-            <button type="button" data-modal="book-ai">
-              <span>科技未來</span>
-              <strong>AI也在學做人</strong>
-            </button>
-            <button type="button" data-modal="book-cotton">
-              <span>生活美學</span>
-              <strong>奶奶的魔法棉花棒</strong>
-            </button>
-          </div>
-
-          <div class="books-row reveal">
-            <p class="row-label">實體書</p>
-            <div class="book-grid">
-              <button class="book-card" type="button" data-modal="book-aesthetic">
-                <img src="img/0010976642.jpg" alt="打造美學視角書封" loading="lazy" />
-                <span>打造美學視角</span>
-              </button>
-              <button class="book-card landscape-cover" type="button" data-modal="book-success">
-                <img src="img/118c44b0-b774-4fb0-815e-e946224e03d4.png" alt="美容成功心法書封" loading="lazy" />
-                <span>美容成功心法</span>
-              </button>
-              <button class="book-card landscape-cover" type="button" data-modal="book-nature">
-                <img src="img/478d4767-fed5-4a8f-a51d-bbc8bcdbbfbd.png" alt="自然療法導師書封" loading="lazy" />
-                <span>自然療法導師</span>
-              </button>
-              <button class="book-card" type="button" data-modal="book-mask">
-                <img src="img/4ae443af-7efb-423c-990e-dec884dd8bb9.png" alt="四季面膜書封" loading="lazy" />
-                <span>四季面膜</span>
-              </button>
-              <button class="book-card" type="button" data-modal="book-cotton">
-                <img src="img/S__21012497.jpg" alt="奶奶的魔法棉花棒書封" loading="lazy" />
-                <span>奶奶的魔法棉花棒</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="books-row reveal">
-            <p class="row-label">電子書</p>
-            <div class="book-grid">
-              <button class="book-card" type="button" data-modal="book-spa">
-                <img src="img/S__21012499.jpg" alt="Spa境界書封" loading="lazy" />
-                <span>Spa境界</span>
-              </button>
-              <button class="book-card" type="button" data-modal="book-ai">
-                <img src="img/S__21012500.jpg" alt="AI也在學做人書封" loading="lazy" />
-                <span>AI也在學做人</span>
-              </button>
-              <button class="book-card" type="button" data-modal="book-code">
-                <img src="img/S__21012501.jpg" alt="人生密碼書封" loading="lazy" />
-                <span>人生密碼</span>
-              </button>
-              <button class="book-card" type="button" data-modal="book-meridian">
-                <img src="img/S__21012502.jpg" alt="經絡藏著你的情緒書封" loading="lazy" />
-                <span>經絡，藏著你的情緒</span>
-              </button>
-            </div>
-          </div>
-
-          <section class="book-shop reveal" id="book-shop" aria-labelledby="book-shop-title" data-book-shop data-payment-endpoint="">
-            <div class="book-shop-heading">
-              <p class="section-kicker">選購書籍</p>
-              <h3 id="book-shop-title">選好想讀的電子書，確認後前往付款。</h3>
-              <p>點選「加入」即可選書，桌機也能拖曳操作。兩本 NT$300，四本 NT$500。</p>
-            </div>
-
-            <div class="purchase-guide" aria-label="購買與領書說明">
+          <section class="book-shop" id="book-shop" aria-labelledby="book-shop-title" data-book-shop data-payment-endpoint="">
+            <h3 class="visually-hidden" id="book-shop-title">選購電子書</h3>
+            <div class="purchase-guide reveal" aria-label="購買與領書說明">
               <article class="line-join-card">
-                <div class="line-join-copy">
+                <div>
                   <p class="guide-label">購買前先完成</p>
                   <h4>先加入官方 LINE，付款後更安心。</h4>
-                  <p>付款完成後，將由官方 LINE 核對資料並提供電子書檔案。先加入，就不怕找不到領書窗口。</p>
+                  <p>付款完成後，將由官方 LINE 核對資料並提供電子書檔案。</p>
                   <a
                     class="line-join-button"
                     href="https://lin.ee/XXL9DlJ"
@@ -296,11 +248,8 @@
                     data-toast="正在開啟官方 LINE"
                   >
                     點我加入官方 LINE
-                    <svg viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M4 10h11M11 6l4 4-4 4" />
-                    </svg>
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
                   </a>
-                  <small>手機可直接點按開啟；桌機也可掃描右側 QR Code。</small>
                 </div>
                 <a
                   class="line-qr-link"
@@ -311,44 +260,28 @@
                   data-toast="正在開啟官方 LINE"
                 >
                   <img src="assets/line-official-qr.png" width="540" height="540" alt="官方 LINE QR Code" />
-                  <span>掃描加入官方 LINE</span>
+                  <span>掃描加入</span>
                 </a>
               </article>
-
               <section class="fulfillment-flow" aria-labelledby="fulfillment-title">
                 <p class="guide-label">付款後領書流程</p>
                 <h4 id="fulfillment-title">完成付款後，請主動私訊官方 LINE。</h4>
                 <ol>
-                  <li>
-                    <span>1</span>
-                    <div>
-                      <strong>依畫面金額完成付款</strong>
-                      <small>若付款頁沒有自動帶入，請手動輸入 NT$300 或 NT$500。</small>
-                    </div>
-                  </li>
-                  <li>
-                    <span>2</span>
-                    <div>
-                      <strong>傳送核對資料</strong>
-                      <small>請提供姓名、付款時間、支付證明截圖，並清楚列出本次購買的書名。</small>
-                    </div>
-                  </li>
-                  <li>
-                    <span>3</span>
-                    <div>
-                      <strong>核對後收到電子書</strong>
-                      <small>後台人員確認資訊後，會由官方 LINE 提供對應的電子檔。</small>
-                    </div>
-                  </li>
+                  <li><span>1</span><div><strong>完成付款</strong><small>若未帶入金額，請手動輸入 NT$300 或 NT$500。</small></div></li>
+                  <li><span>2</span><div><strong>傳送核對資料</strong><small>姓名、付款時間、支付證明截圖與購買書名。</small></div></li>
+                  <li><span>3</span><div><strong>收到電子書</strong><small>後台確認後，由官方 LINE 提供電子檔。</small></div></li>
                 </ol>
               </section>
             </div>
 
             <div class="book-shop-layout">
-              <div class="book-shop-shelf" aria-label="可選購電子書">
-                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="spa">
-                  <img src="img/S__21012499.jpg" alt="SPA 境界電子書封面" loading="lazy" />
-                  <div>
+              <div class="book-shop-shelf reveal" aria-label="可選購電子書">
+                <article class="shop-book" tabindex="0" data-shop-source="spa">
+                  <picture>
+                    <source srcset="img/S__21012499.webp" type="image/webp" />
+                    <img src="img/S__21012499.jpg" alt="SPA 境界電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
                     <span>電子書</span>
                     <strong>SPA 境界</strong>
                     <small>國際SPA視野、服務美學與品牌標準。</small>
@@ -358,9 +291,12 @@
                     </div>
                   </div>
                 </article>
-                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="ai">
-                  <img src="img/S__21012500.jpg" alt="AI 也在學做人電子書封面" loading="lazy" />
-                  <div>
+                <article class="shop-book" tabindex="0" data-shop-source="ai">
+                  <picture>
+                    <source srcset="img/S__21012500.webp" type="image/webp" />
+                    <img src="img/S__21012500.jpg" alt="AI 也在學做人電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
                     <span>電子書</span>
                     <strong>AI 也在學做人</strong>
                     <small>把AI變成美業經營與溫度服務的工具。</small>
@@ -370,9 +306,12 @@
                     </div>
                   </div>
                 </article>
-                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="code">
-                  <img src="img/S__21012501.jpg" alt="人生密碼電子書封面" loading="lazy" />
-                  <div>
+                <article class="shop-book" tabindex="0" data-shop-source="code">
+                  <picture>
+                    <source srcset="img/S__21012501.webp" type="image/webp" />
+                    <img src="img/S__21012501.jpg" alt="人生密碼電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
                     <span>電子書</span>
                     <strong>人生密碼</strong>
                     <small>從生命方向、關係與選擇看懂自己。</small>
@@ -382,9 +321,12 @@
                     </div>
                   </div>
                 </article>
-                <article class="shop-book" draggable="true" tabindex="0" data-shop-source="meridian">
-                  <img src="img/S__21012502.jpg" alt="經絡藏著你的情緒電子書封面" loading="lazy" />
-                  <div>
+                <article class="shop-book" tabindex="0" data-shop-source="meridian">
+                  <picture>
+                    <source srcset="img/S__21012502.webp" type="image/webp" />
+                    <img src="img/S__21012502.jpg" alt="經絡藏著你的情緒電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
                     <span>電子書</span>
                     <strong>經絡藏著你的情緒</strong>
                     <small>讀懂經絡、情緒與身體壓力的訊號。</small>
@@ -396,130 +338,108 @@
                 </article>
               </div>
 
-              <div class="book-cart" aria-label="選購區">
-                <div class="cart-dropzone" data-cart-dropzone>
-                  <p data-cart-empty>拖曳書籍到這裡，或從左側點選加入。</p>
+              <aside class="book-cart reveal" aria-label="選購摘要" data-delay="100">
+                <div class="cart-selection" data-cart-dropzone>
+                  <p data-cart-empty>尚未選書。請從左側加入 2 本或 4 本電子書。</p>
                   <div class="cart-items" data-cart-items aria-live="polite"></div>
                 </div>
                 <div class="cart-summary">
-                  <div>
-                    <span>目前選購</span>
-                    <strong data-cart-count>0 本</strong>
-                  </div>
-                  <div>
-                    <span>優惠金額</span>
-                    <strong data-cart-total>NT$0</strong>
-                  </div>
+                  <div><span>目前選購</span><strong data-cart-count>0 本</strong></div>
+                  <div><span>優惠金額</span><strong data-cart-total>NT$0</strong></div>
                   <p data-cart-hint>選滿 2 本即可結帳。</p>
                   <button class="checkout-button" type="button" data-checkout-button disabled>確認訂單並前往付款</button>
                   <small class="checkout-status" data-checkout-status>付款頁若未自動帶入金額，結帳前會再次顯示正確金額。</small>
                 </div>
-              </div>
+              </aside>
             </div>
           </section>
+
+          <details class="other-books reveal">
+            <summary>
+              <span><strong>其他著作</strong><small>實體書與更多出版作品</small></span>
+              <span class="details-action">展開瀏覽</span>
+            </summary>
+            <div class="other-books-rail">
+              <button type="button" data-modal="book-aesthetic">
+                <picture><source srcset="img/0010976642.webp" type="image/webp" /><img src="img/0010976642.jpg" alt="打造美學視角書封" loading="lazy" /></picture>
+                <strong>打造美學視角</strong><small>實體書</small>
+              </button>
+              <button type="button" data-modal="book-success">
+                <picture><source srcset="img/118c44b0-b774-4fb0-815e-e946224e03d4.webp" type="image/webp" /><img src="img/118c44b0-b774-4fb0-815e-e946224e03d4.png" alt="美容成功心法書封" loading="lazy" /></picture>
+                <strong>美容成功心法</strong><small>實體書</small>
+              </button>
+              <button type="button" data-modal="book-nature">
+                <picture><source srcset="img/478d4767-fed5-4a8f-a51d-bbc8bcdbbfbd.webp" type="image/webp" /><img src="img/478d4767-fed5-4a8f-a51d-bbc8bcdbbfbd.png" alt="自然療法導師書封" loading="lazy" /></picture>
+                <strong>自然療法導師</strong><small>實體書</small>
+              </button>
+              <button type="button" data-modal="book-mask">
+                <picture><source srcset="img/4ae443af-7efb-423c-990e-dec884dd8bb9.webp" type="image/webp" /><img src="img/4ae443af-7efb-423c-990e-dec884dd8bb9.png" alt="四季面膜書封" loading="lazy" /></picture>
+                <strong>四季面膜</strong><small>實體書</small>
+              </button>
+              <button type="button" data-modal="book-cotton">
+                <picture><source srcset="img/S__21012497.webp" type="image/webp" /><img src="img/S__21012497.jpg" alt="奶奶的魔法棉花棒書封" loading="lazy" /></picture>
+                <strong>奶奶的魔法棉花棒</strong><small>更多著作</small>
+              </button>
+            </div>
+          </details>
         </section>
 
-        <section class="services-section section" id="services" aria-labelledby="services-title">
-          <div class="section-title-centered reveal">
-            <span></span>
-            <h2 id="services-title">服務與專長</h2>
-            <p>從你想完成的事開始，整合美業 × 科技 × 教育 × 療癒</p>
-            <span></span>
+        <section class="story-section section" id="about" aria-labelledby="about-title" data-nav-section>
+          <div class="story-heading reveal">
+            <p class="section-kicker">40年專業積累 × 教育 × 創業 × 顧問 × 協會領航</p>
+            <h2 id="about-title">40年美業路徑<br />與核心信念。</h2>
+            <p>從第一線到教育傳承，從品牌創業到整合顧問服務，每一步都以專業為根、以人為本。</p>
           </div>
-
-          <div class="service-grid reveal">
-            <button class="service-card" type="button" data-modal="service-startup">
-              <span class="service-icon">蓮</span>
-              <strong>我想開SPA店</strong>
-              <small>店面規劃<br />課程設計<br />獲利模式<br />會員制度</small>
-            </button>
-            <button class="service-card" type="button" data-modal="service-business">
-              <span class="service-icon">鑰</span>
-              <strong>我想提升回購</strong>
-              <small>提升來客數<br />提高回購率<br />打造穩定現金流<br />建立團隊制度</small>
-            </button>
-            <button class="service-card" type="button" data-modal="service-ai">
-              <span class="service-icon">AI</span>
-              <strong>我想導入AI</strong>
-              <small>AI遊戲導客系統<br />AI票券系統<br />AI預約系統<br />AI一頁式網站</small>
-            </button>
-            <button class="service-card" type="button" data-modal="service-brand">
-              <span class="service-icon">瓶</span>
-              <strong>我想做品牌產品</strong>
-              <small>美容產品OEM<br />品牌包裝設計<br />教育訓練課程開發<br />國際飯店SPA規劃</small>
-            </button>
-            <button class="service-card" type="button" data-modal="service-lucky">
-              <span class="service-icon">竹</span>
-              <strong>我想加入美業聯盟</strong>
-              <small>串聯全台美業300名店<br />導客 × 教育 × 聯盟採購 × AI行銷</small>
-            </button>
+          <div class="career-path reveal" data-delay="100" aria-label="王燕呢老師專業路徑">
+            <article><span>01</span><strong>第一線美容師</strong><small>從現場服務，累積實務經驗與客戶信任。</small></article>
+            <article><span>02</span><strong>教育講師</strong><small>培育專業人才，傳遞正確觀念與標準知識。</small></article>
+            <article><span>03</span><strong>品牌創業者</strong><small>建立美業與SPA品牌，落實理念與服務。</small></article>
+            <article><span>04</span><strong>SPA顧問</strong><small>整合教育、營運與品牌策略，陪伴業者升級。</small></article>
+            <article><span>05</span><strong>台灣SPA協會理事長</strong><small>推動產業標準與共好，促進交流與接軌。</small></article>
+          </div>
+          <div class="belief-rail reveal" data-delay="160" aria-label="核心信念">
+            <article><strong>看見每一個人</strong><small>理解情緒與需求，看見真正的你。</small></article>
+            <article><strong>陪伴與療癒</strong><small>在美的過程中，陪伴身心一起成長。</small></article>
+            <article><strong>專業與整合</strong><small>結合美學、自然療法、科技與經營智慧。</small></article>
+            <article><strong>傳承與共好</strong><small>成就年輕世代，創造美業新價值。</small></article>
           </div>
         </section>
       </main>
 
-      <footer class="contact-section" id="contact">
+      <footer class="contact-section" id="contact" data-nav-section>
         <div class="contact-content">
           <div class="contact-heading">
+            <p class="section-kicker">與我聯絡</p>
             <h2>聯絡王燕呢顧問</h2>
-            <p>讓我們一起，成就更美好的美業未來</p>
+            <p>讓我們一起，成就更美好的美業未來。</p>
           </div>
           <div class="contact-links" aria-label="聯絡方式">
-            <a href="tel:+88633217766" data-toast="正在撥打辦公室電話">
-              <span class="contact-icon">☎</span>
-              <strong>03-3217766</strong>
-              <small>辦公室電話</small>
-            </a>
-            <a href="mailto:ubodyspa@gmail.com" data-toast="正在開啟 Email">
-              <span class="contact-icon">✉</span>
-              <strong>ubodyspa@gmail.com</strong>
-              <small>電子郵件</small>
-            </a>
-            <a href="https://www.mmap.tw/" target="_blank" rel="noreferrer" data-toast="正在開啟官方網站">
-              <span class="contact-icon">◎</span>
-              <strong>www.mmap.tw</strong>
-              <small>官方網站</small>
-            </a>
-            <a href="https://www.twspa.tw/" target="_blank" rel="noreferrer" data-toast="正在開啟台灣SPA協會網站">
-              <span class="contact-icon">⌖</span>
-              <strong>台灣SPA協會</strong>
-              <small>線上資訊</small>
-            </a>
-            <a
-              class="qr-contact"
-              href="https://lin.ee/XXL9DlJ"
-              target="_blank"
-              rel="noreferrer"
-              data-toast="正在開啟官方 LINE"
-            >
-              <img
-                class="qr-code"
-                src="assets/line-official-qr.png"
-                width="540"
-                height="540"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                alt="官方 LINE QR Code"
-              />
-              <strong>官方LINE</strong>
-              <small>掃描或點擊加入</small>
-            </a>
+            <a href="tel:+88633217766" data-toast="正在撥打辦公室電話"><span>電話</span><strong>03-3217766</strong><small>辦公室電話</small></a>
+            <a href="mailto:ubodyspa@gmail.com" data-toast="正在開啟 Email"><span>郵件</span><strong>ubodyspa@gmail.com</strong><small>電子郵件</small></a>
+            <a href="https://www.mmap.tw/" target="_blank" rel="noreferrer" data-toast="正在開啟官方網站"><span>網站</span><strong>www.mmap.tw</strong><small>官方網站</small></a>
+            <a href="https://www.twspa.tw/" target="_blank" rel="noreferrer" data-toast="正在開啟台灣SPA協會網站"><span>協會</span><strong>台灣SPA協會</strong><small>線上資訊</small></a>
           </div>
-          <p class="copyright">© 2024 王燕呢顧問｜台灣SPA協會｜版權所有</p>
+          <a class="contact-line" href="https://lin.ee/XXL9DlJ" target="_blank" rel="noreferrer" data-toast="正在開啟官方 LINE">
+            <div><span>官方 LINE</span><strong>加入好友，開始聯絡</strong><small>手機可直接點擊，桌機可掃描 QR Code</small></div>
+            <img src="assets/line-official-qr.png" width="540" height="540" alt="官方 LINE QR Code" />
+          </a>
+          <p class="copyright">© 2026 王燕呢顧問｜台灣SPA協會｜版權所有</p>
         </div>
       </footer>
 
       <button class="back-to-top" type="button" data-back-top aria-label="回到頂端">⌃</button>
     </div>
 
+    <div class="mobile-cart-bar" data-mobile-cart aria-live="polite" hidden>
+      <div><span data-mobile-cart-count>0 本</span><strong data-mobile-cart-total>NT$0</strong></div>
+      <button type="button" data-mobile-checkout disabled>確認訂單</button>
+    </div>
+
     <div class="toast" role="status" aria-live="polite" data-toast></div>
 
     <dialog class="info-dialog" data-dialog aria-labelledby="dialog-title">
       <div class="dialog-card">
-        <button class="dialog-close" type="button" aria-label="關閉視窗" data-close-dialog>
-          <span></span>
-          <span></span>
-        </button>
+        <button class="dialog-close" type="button" aria-label="關閉視窗" data-close-dialog><span></span><span></span></button>
         <p class="dialog-kicker" data-dialog-kicker></p>
         <h2 id="dialog-title" data-dialog-title></h2>
         <p data-dialog-body></p>
@@ -532,16 +452,10 @@
     <dialog class="preview-dialog" data-preview-dialog aria-labelledby="preview-title">
       <div class="preview-card">
         <div class="preview-head">
-          <div>
-            <p>試閱書籍</p>
-            <h2 id="preview-title" data-preview-title></h2>
-          </div>
+          <div><p>試閱書籍</p><h2 id="preview-title" data-preview-title></h2></div>
           <div class="preview-actions">
             <a href="#" target="_blank" rel="noreferrer" data-preview-open>另開試閱</a>
-            <button class="dialog-close" type="button" aria-label="關閉試閱視窗" data-close-preview>
-              <span></span>
-              <span></span>
-            </button>
+            <button class="dialog-close" type="button" aria-label="關閉試閱視窗" data-close-preview><span></span><span></span></button>
           </div>
         </div>
         <iframe data-preview-frame title="書籍 PDF 試閱"></iframe>
@@ -550,30 +464,15 @@
 
     <dialog class="checkout-dialog" data-checkout-dialog aria-labelledby="checkout-dialog-title">
       <div class="checkout-dialog-card">
-        <button class="dialog-close" type="button" aria-label="關閉付款確認視窗" data-close-checkout>
-          <span></span>
-          <span></span>
-        </button>
+        <button class="dialog-close" type="button" aria-label="關閉付款確認視窗" data-close-checkout><span></span><span></span></button>
         <p class="dialog-kicker">結帳前最後確認</p>
         <h2 id="checkout-dialog-title">確認書籍與付款金額</h2>
         <div class="checkout-confirm-summary">
-          <div>
-            <span>本次選購</span>
-            <ul data-checkout-confirm-books></ul>
-          </div>
-          <div class="checkout-confirm-total">
-            <span>應付金額</span>
-            <strong data-checkout-confirm-amount>NT$0</strong>
-          </div>
+          <div><span>本次選購</span><ul data-checkout-confirm-books></ul></div>
+          <div class="checkout-confirm-total"><span>應付金額</span><strong data-checkout-confirm-amount>NT$0</strong></div>
         </div>
-        <div class="manual-payment-note">
-          <strong>請留意付款頁金額</strong>
-          <p>目前付款頁可能不會自動帶入金額，請手動輸入 <b data-checkout-manual-amount>NT$0</b> 後再完成付款。</p>
-        </div>
-        <div class="after-payment-note">
-          <strong>付款後請回到官方 LINE</strong>
-          <p>主動傳送姓名、付款時間、支付證明截圖，並清楚說明購買了哪些書。</p>
-        </div>
+        <div class="manual-payment-note"><strong>請留意付款頁金額</strong><p>目前付款頁可能不會自動帶入金額，請手動輸入 <b data-checkout-manual-amount>NT$0</b> 後再完成付款。</p></div>
+        <div class="after-payment-note"><strong>付款後請回到官方 LINE</strong><p>主動傳送姓名、付款時間、支付證明截圖，並清楚說明購買了哪些書。</p></div>
         <div class="checkout-dialog-actions">
           <button class="checkout-proceed-button" type="button" data-checkout-proceed>確認，前往付款頁</button>
           <a href="https://lin.ee/XXL9DlJ" target="_blank" rel="noreferrer" data-toast="正在開啟官方 LINE">尚未加入？先加入官方 LINE</a>
@@ -582,6 +481,6 @@
       </div>
     </dialog>
 
-    <script src="main.js?v=20260628-line-flow"></script>
+    <script src="main.js?v=20260628-dual-path"></script>
   </body>
 </html>
