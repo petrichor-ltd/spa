@@ -22,7 +22,7 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260627-payuni-fallback" />
+    <link rel="stylesheet" href="styles.css?v=20260628-line-flow" />
   </head>
   <body>
     <a class="skip-link" href="#about">跳至主要內容</a>
@@ -278,8 +278,70 @@
           <section class="book-shop reveal" id="book-shop" aria-labelledby="book-shop-title" data-book-shop data-payment-endpoint="">
             <div class="book-shop-heading">
               <p class="section-kicker">選購書籍</p>
-              <h3 id="book-shop-title">把想讀的電子書，拖進右側選購區。</h3>
-              <p>兩本 NT$300，四本 NT$500。手機版可直接點選「加入」。</p>
+              <h3 id="book-shop-title">選好想讀的電子書，確認後前往付款。</h3>
+              <p>點選「加入」即可選書，桌機也能拖曳操作。兩本 NT$300，四本 NT$500。</p>
+            </div>
+
+            <div class="purchase-guide" aria-label="購買與領書說明">
+              <article class="line-join-card">
+                <div class="line-join-copy">
+                  <p class="guide-label">購買前先完成</p>
+                  <h4>先加入官方 LINE，付款後更安心。</h4>
+                  <p>付款完成後，將由官方 LINE 核對資料並提供電子書檔案。先加入，就不怕找不到領書窗口。</p>
+                  <a
+                    class="line-join-button"
+                    href="https://lin.ee/XXL9DlJ"
+                    target="_blank"
+                    rel="noreferrer"
+                    data-toast="正在開啟官方 LINE"
+                  >
+                    點我加入官方 LINE
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+                      <path d="M4 10h11M11 6l4 4-4 4" />
+                    </svg>
+                  </a>
+                  <small>手機可直接點按開啟；桌機也可掃描右側 QR Code。</small>
+                </div>
+                <a
+                  class="line-qr-link"
+                  href="https://lin.ee/XXL9DlJ"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="掃描或點擊加入官方 LINE"
+                  data-toast="正在開啟官方 LINE"
+                >
+                  <img src="assets/line-official-qr.png" width="540" height="540" alt="官方 LINE QR Code" />
+                  <span>掃描加入官方 LINE</span>
+                </a>
+              </article>
+
+              <section class="fulfillment-flow" aria-labelledby="fulfillment-title">
+                <p class="guide-label">付款後領書流程</p>
+                <h4 id="fulfillment-title">完成付款後，請主動私訊官方 LINE。</h4>
+                <ol>
+                  <li>
+                    <span>1</span>
+                    <div>
+                      <strong>依畫面金額完成付款</strong>
+                      <small>若付款頁沒有自動帶入，請手動輸入 NT$300 或 NT$500。</small>
+                    </div>
+                  </li>
+                  <li>
+                    <span>2</span>
+                    <div>
+                      <strong>傳送核對資料</strong>
+                      <small>請提供姓名、付款時間、支付證明截圖，並清楚列出本次購買的書名。</small>
+                    </div>
+                  </li>
+                  <li>
+                    <span>3</span>
+                    <div>
+                      <strong>核對後收到電子書</strong>
+                      <small>後台人員確認資訊後，會由官方 LINE 提供對應的電子檔。</small>
+                    </div>
+                  </li>
+                </ol>
+              </section>
             </div>
 
             <div class="book-shop-layout">
@@ -349,8 +411,8 @@
                     <strong data-cart-total>NT$0</strong>
                   </div>
                   <p data-cart-hint>選滿 2 本即可結帳。</p>
-                  <button class="checkout-button" type="button" data-checkout-button disabled>點我結帳</button>
-                  <small class="checkout-status" data-checkout-status>結帳會呼叫後端簽章 API，由統一金流正式帶入金額。</small>
+                  <button class="checkout-button" type="button" data-checkout-button disabled>確認訂單並前往付款</button>
+                  <small class="checkout-status" data-checkout-status>付款頁若未自動帶入金額，結帳前會再次顯示正確金額。</small>
                 </div>
               </div>
             </div>
@@ -424,7 +486,7 @@
             </a>
             <a
               class="qr-contact"
-              href="https://line.me/R/ti/p/@ubodyspa"
+              href="https://lin.ee/XXL9DlJ"
               target="_blank"
               rel="noreferrer"
               data-toast="正在開啟官方 LINE"
@@ -486,6 +548,40 @@
       </div>
     </dialog>
 
-    <script src="main.js?v=20260627-payuni-fallback"></script>
+    <dialog class="checkout-dialog" data-checkout-dialog aria-labelledby="checkout-dialog-title">
+      <div class="checkout-dialog-card">
+        <button class="dialog-close" type="button" aria-label="關閉付款確認視窗" data-close-checkout>
+          <span></span>
+          <span></span>
+        </button>
+        <p class="dialog-kicker">結帳前最後確認</p>
+        <h2 id="checkout-dialog-title">確認書籍與付款金額</h2>
+        <div class="checkout-confirm-summary">
+          <div>
+            <span>本次選購</span>
+            <ul data-checkout-confirm-books></ul>
+          </div>
+          <div class="checkout-confirm-total">
+            <span>應付金額</span>
+            <strong data-checkout-confirm-amount>NT$0</strong>
+          </div>
+        </div>
+        <div class="manual-payment-note">
+          <strong>請留意付款頁金額</strong>
+          <p>目前付款頁可能不會自動帶入金額，請手動輸入 <b data-checkout-manual-amount>NT$0</b> 後再完成付款。</p>
+        </div>
+        <div class="after-payment-note">
+          <strong>付款後請回到官方 LINE</strong>
+          <p>主動傳送姓名、付款時間、支付證明截圖，並清楚說明購買了哪些書。</p>
+        </div>
+        <div class="checkout-dialog-actions">
+          <button class="checkout-proceed-button" type="button" data-checkout-proceed>確認，前往付款頁</button>
+          <a href="https://lin.ee/XXL9DlJ" target="_blank" rel="noreferrer" data-toast="正在開啟官方 LINE">尚未加入？先加入官方 LINE</a>
+          <button class="checkout-back-button" type="button" data-close-checkout>返回修改</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="main.js?v=20260628-line-flow"></script>
   </body>
 </html>

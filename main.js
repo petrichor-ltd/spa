@@ -180,6 +180,11 @@ const previewTitle = document.querySelector("[data-preview-title]");
 const previewFrame = document.querySelector("[data-preview-frame]");
 const previewOpen = document.querySelector("[data-preview-open]");
 const closePreviewButton = document.querySelector("[data-close-preview]");
+const checkoutDialog = document.querySelector("[data-checkout-dialog]");
+const checkoutConfirmBooks = document.querySelector("[data-checkout-confirm-books]");
+const checkoutConfirmAmount = document.querySelector("[data-checkout-confirm-amount]");
+const checkoutManualAmount = document.querySelector("[data-checkout-manual-amount]");
+const checkoutProceedButton = document.querySelector("[data-checkout-proceed]");
 const toast = document.querySelector("[data-toast]");
 const progress = document.querySelector("[data-progress]");
 const backTop = document.querySelector("[data-back-top]");
@@ -221,6 +226,7 @@ const shopBooks = [
 ];
 const shopBookMap = new Map(shopBooks.map((book) => [book.id, book]));
 const selectedShopBookIds = new Set();
+let pendingCheckoutOrder = null;
 
 const getStoredTheme = () => {
   try {
@@ -259,7 +265,7 @@ const showToast = (message, duration = 1800) => {
 };
 
 const syncModalOpenState = () => {
-  document.body.classList.toggle("modal-open", Boolean(dialog?.open || previewDialog?.open));
+  document.body.classList.toggle("modal-open", Boolean(dialog?.open || previewDialog?.open || checkoutDialog?.open));
 };
 
 const setCheckoutStatus = (message, state = "idle") => {
@@ -353,6 +359,12 @@ const closePreview = () => {
   if (!previewDialog?.open) return;
   previewDialog.close();
   if (previewFrame) previewFrame.src = "about:blank";
+  syncModalOpenState();
+};
+
+const closeCheckoutDialog = () => {
+  if (!checkoutDialog?.open) return;
+  checkoutDialog.close();
   syncModalOpenState();
 };
 
@@ -453,12 +465,12 @@ const renderShopCart = () => {
   cartTotal.textContent = amount ? `NT$${amount}` : "NT$0";
   cartHint.textContent = getShopHint(books.length);
   checkoutButton.disabled = amount === 0;
-  checkoutButton.textContent = amount ? `點我結帳・NT$${amount}` : "點我結帳";
+  checkoutButton.textContent = amount ? `確認訂單・NT$${amount}` : "確認訂單並前往付款";
   checkoutButton.dataset.checkoutAmount = amount ? String(amount) : "";
   checkoutStatus.dataset.state = amount && !payuniSigningEndpoint ? "warning" : "idle";
   checkoutStatus.textContent = amount && !payuniSigningEndpoint
-    ? "目前先開啟一般收款頁；正式自動帶入金額需後端簽章 API。"
-    : "結帳會呼叫後端簽章 API，由統一金流正式帶入金額。";
+    ? `付款頁若未自動帶入，請手動輸入 NT$${amount}；付款後請回 LINE 傳送核對資料。`
+    : "付款頁若未自動帶入金額，結帳前會再次顯示正確金額。";
 
   document.querySelectorAll("[data-shop-source]").forEach((source) => {
     const id = source.getAttribute("data-shop-source");
@@ -493,6 +505,59 @@ const removeShopBook = (id) => {
   selectedShopBookIds.delete(id);
   renderShopCart();
   showToast("已從選購區移除。");
+};
+
+const openCheckoutDialog = (order) => {
+  if (!checkoutDialog || !checkoutConfirmBooks || !checkoutConfirmAmount || !checkoutManualAmount || !checkoutProceedButton) return;
+  pendingCheckoutOrder = order;
+  checkoutConfirmBooks.textContent = "";
+  order.books.forEach((book) => {
+    const item = document.createElement("li");
+    item.textContent = book.title;
+    checkoutConfirmBooks.append(item);
+  });
+  const formattedAmount = `NT$${order.amount}`;
+  checkoutConfirmAmount.textContent = formattedAmount;
+  checkoutManualAmount.textContent = formattedAmount;
+  checkoutProceedButton.disabled = false;
+  checkoutProceedButton.textContent = "確認，前往付款頁";
+  checkoutDialog.showModal();
+  syncModalOpenState();
+};
+
+const beginCheckout = async (order, checkoutButton) => {
+  if (!order?.amount || !checkoutProceedButton) return;
+  checkoutProceedButton.disabled = true;
+  checkoutProceedButton.textContent = "正在前往付款頁…";
+  checkoutButton.disabled = true;
+  checkoutButton.classList.add("is-loading");
+  try {
+    if (!payuniSigningEndpoint) {
+      const message = `付款頁若未自動帶入，請手動輸入 NT$${order.amount}。`;
+      setCheckoutStatus(message, "warning");
+      showToast(message, 2600);
+      window.location.href = buildFallbackPaymentUrl(order);
+      return;
+    }
+    setCheckoutStatus("正在建立付款資料，請稍候。", "loading");
+    const signed = await requestSignedCheckout(order);
+    if (signed?.fields && submitSignedPayuniForm(signed)) return;
+    if (signed?.url) {
+      window.location.href = signed.url;
+      return;
+    }
+    throw new Error("Payment signing response is incomplete");
+  } catch {
+    const message = payuniSigningEndpoint
+      ? "付款資料建立失敗，請稍後再試。"
+      : "無法開啟一般收款頁，請稍後再試。";
+    setCheckoutStatus(message, "warning");
+    showToast(message, 5200);
+    checkoutButton.disabled = false;
+    checkoutButton.classList.remove("is-loading");
+    checkoutProceedButton.disabled = false;
+    checkoutProceedButton.textContent = "確認，前往付款頁";
+  }
 };
 
 const initBookShop = () => {
@@ -546,45 +611,17 @@ const initBookShop = () => {
     removeShopBook(removeButton.getAttribute("data-remove-book"));
   });
 
-  checkoutButton.addEventListener("click", async () => {
+  checkoutButton.addEventListener("click", () => {
     const order = buildShopOrder();
     if (!order.amount) {
       setCheckoutStatus("請選擇 2 本或 4 本電子書後再結帳。", "warning");
       showToast("請選擇 2 本或 4 本電子書後再結帳。", 3200);
       return;
     }
-
-    checkoutButton.disabled = true;
-    checkoutButton.classList.add("is-loading");
-    try {
-      if (!payuniSigningEndpoint) {
-        const message = "正在開啟一般收款頁；若金額未自動帶入，請以畫面顯示金額為準。";
-        setCheckoutStatus(message, "warning");
-        showToast(message, 2600);
-        window.location.href = buildFallbackPaymentUrl(order);
-        return;
-      }
-      setCheckoutStatus("正在建立付款資料，請稍候。", "loading");
-      const signed = await requestSignedCheckout(order);
-      if (signed?.fields && submitSignedPayuniForm(signed)) return;
-      if (signed?.url) {
-        window.location.href = signed.url;
-        return;
-      }
-      setCheckoutStatus("付款簽章回應格式不完整，請確認金流 API。", "warning");
-      showToast("付款簽章回應格式不完整，請確認金流 API。", 4200);
-      checkoutButton.disabled = false;
-      checkoutButton.classList.remove("is-loading");
-    } catch {
-      const message = payuniSigningEndpoint
-        ? "付款資料建立失敗，請稍後再試。"
-        : "無法開啟一般收款頁，請稍後再試。";
-      setCheckoutStatus(message, "warning");
-      showToast(message, 5200);
-      checkoutButton.disabled = false;
-      checkoutButton.classList.remove("is-loading");
-    }
+    openCheckoutDialog(order);
   });
+
+  checkoutProceedButton?.addEventListener("click", () => beginCheckout(pendingCheckoutOrder, checkoutButton));
 
   renderShopCart();
 };
@@ -655,6 +692,7 @@ document.querySelectorAll("a[data-toast]").forEach((link) => {
 
 closeDialogButton?.addEventListener("click", closeDialog);
 closePreviewButton?.addEventListener("click", closePreview);
+document.querySelectorAll("[data-close-checkout]").forEach((button) => button.addEventListener("click", closeCheckoutDialog));
 
 dialog?.addEventListener("click", (event) => {
   if (event.target === dialog) closeDialog();
@@ -673,10 +711,19 @@ previewDialog?.addEventListener("close", () => {
   syncModalOpenState();
 });
 
+checkoutDialog?.addEventListener("click", (event) => {
+  if (event.target === checkoutDialog) closeCheckoutDialog();
+});
+
+checkoutDialog?.addEventListener("close", () => {
+  syncModalOpenState();
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
   closeDialog();
   closePreview();
+  closeCheckoutDialog();
 });
 
 window.addEventListener(
