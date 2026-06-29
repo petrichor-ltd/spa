@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>王燕呢｜美業教育・SPA顧問・電子書</title>
+    <title>志麗美容科技</title>
     <meta
       name="description"
       content="王燕呢顧問官方網站。40年美業實戰、SPA創業與品牌顧問、美業教育、AI應用與電子書選購。"
@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://spa.petrichor.tw/" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
-    <meta property="og:title" content="王燕呢｜整理成下一代美容人的路" />
+    <meta property="og:title" content="志麗美容科技" />
     <meta property="og:description" content="40年美業實戰、SPA創業顧問、美業經營輔導、AI美業應用與電子書。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://spa.petrichor.tw/" />
@@ -21,7 +21,7 @@
     <meta property="og:image:height" content="887" />
     <meta property="og:locale" content="zh_TW" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="王燕呢｜整理成下一代美容人的路" />
+    <meta name="twitter:title" content="志麗美容科技" />
     <meta name="twitter:description" content="美業教育、SPA顧問、品牌經營與電子書。" />
     <meta name="twitter:image" content="https://spa.petrichor.tw/assets/hero-exact-scene.png" />
 
@@ -62,7 +62,7 @@
           {
             "@type": "Organization",
             "@id": "https://spa.petrichor.tw/#organization",
-            "name": "王燕呢美業顧問",
+            "name": "志麗美容科技",
             "url": "https://spa.petrichor.tw/",
             "founder": { "@id": "https://spa.petrichor.tw/#person" }
           },
@@ -80,7 +80,7 @@
       }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20260628-dual-path" />
+    <link rel="stylesheet" href="styles.css?v=20260629-mobile-preview" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -90,7 +90,7 @@
       <header class="site-header" data-header>
         <div class="header-inner">
           <a class="brand" href="#top" aria-label="回到首頁">
-            <span class="brand-name">王燕呢</span>
+            <span class="brand-name">志麗美容科技</span>
             <span class="brand-sub">美容教育 × SPA產業 × 身心平衡</span>
           </a>
 
@@ -390,6 +390,7 @@
             <h2 id="about-title">40年美業路徑<br />與核心信念。</h2>
             <p>從第一線到教育傳承，從品牌創業到整合顧問服務，每一步都以專業為根、以人為本。</p>
           </div>
+          <img class="story-portrait" src="assets/portrait-light.jpg" width="374" height="543" loading="lazy" alt="王燕呢顧問" />
           <div class="career-path reveal" data-delay="100" aria-label="王燕呢老師專業路徑">
             <article><span>01</span><strong>第一線美容師</strong><small>從現場服務，累積實務經驗與客戶信任。</small></article>
             <article><span>02</span><strong>教育講師</strong><small>培育專業人才，傳遞正確觀念與標準知識。</small></article>
@@ -452,13 +453,17 @@
     <dialog class="preview-dialog" data-preview-dialog aria-labelledby="preview-title">
       <div class="preview-card">
         <div class="preview-head">
-          <div><p>試閱書籍</p><h2 id="preview-title" data-preview-title></h2></div>
+          <div>
+            <p>試閱書籍</p>
+            <h2 id="preview-title" data-preview-title></h2>
+            <small>精選文字內頁已依螢幕寬度顯示，可直接向下閱讀。</small>
+          </div>
           <div class="preview-actions">
-            <a href="#" target="_blank" rel="noreferrer" data-preview-open>另開試閱</a>
+            <a href="#" download data-preview-open>下載試閱 PDF</a>
             <button class="dialog-close" type="button" aria-label="關閉試閱視窗" data-close-preview><span></span><span></span></button>
           </div>
         </div>
-        <iframe data-preview-frame title="書籍 PDF 試閱"></iframe>
+        <div class="preview-pages" data-preview-pages tabindex="0" role="region" aria-label="書籍試閱內頁"></div>
       </div>
     </dialog>
 
@@ -481,6 +486,6 @@
       </div>
     </dialog>
 
-    <script src="main.js?v=20260628-dual-path"></script>
+    <script src="main.js?v=20260629-mobile-preview"></script>
   </body>
 </html>

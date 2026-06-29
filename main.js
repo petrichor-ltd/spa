@@ -177,7 +177,7 @@ const dialogAction = document.querySelector("[data-dialog-action]");
 const closeDialogButton = document.querySelector("[data-close-dialog]");
 const previewDialog = document.querySelector("[data-preview-dialog]");
 const previewTitle = document.querySelector("[data-preview-title]");
-const previewFrame = document.querySelector("[data-preview-frame]");
+const previewPages = document.querySelector("[data-preview-pages]");
 const previewOpen = document.querySelector("[data-preview-open]");
 const closePreviewButton = document.querySelector("[data-close-preview]");
 const checkoutDialog = document.querySelector("[data-checkout-dialog]");
@@ -210,28 +210,48 @@ const shopBooks = [
     title: "SPA 境界",
     image: "img/S__21012499.jpg",
     modal: "book-spa",
-    preview: "preview-books/spa-preview.pdf"
+    preview: "preview-books/spa-preview.pdf",
+    previewPages: [
+      { page: 3, src: "preview-pages/spa/page-03.webp" },
+      { page: 8, src: "preview-pages/spa/page-08.webp" },
+      { page: 9, src: "preview-pages/spa/page-09.webp" }
+    ]
   },
   {
     id: "ai",
     title: "AI 也在學做人",
     image: "img/S__21012500.jpg",
     modal: "book-ai",
-    preview: "preview-books/ai-preview.pdf"
+    preview: "preview-books/ai-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/ai/page-02.webp" },
+      { page: 3, src: "preview-pages/ai/page-03.webp" },
+      { page: 4, src: "preview-pages/ai/page-04.webp" }
+    ]
   },
   {
     id: "code",
     title: "人生密碼",
     image: "img/S__21012501.jpg",
     modal: "book-code",
-    preview: "preview-books/life-code-preview.pdf"
+    preview: "preview-books/life-code-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/life-code/page-02.webp" },
+      { page: 3, src: "preview-pages/life-code/page-03.webp" },
+      { page: 4, src: "preview-pages/life-code/page-04.webp" }
+    ]
   },
   {
     id: "meridian",
     title: "經絡藏著你的情緒",
     image: "img/S__21012502.jpg",
     modal: "book-meridian",
-    preview: "preview-books/meridian-preview.pdf"
+    preview: "preview-books/meridian-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/meridian/page-02.webp" },
+      { page: 3, src: "preview-pages/meridian/page-03.webp" },
+      { page: 4, src: "preview-pages/meridian/page-04.webp" }
+    ]
   }
 ];
 const shopBookMap = new Map(shopBooks.map((book) => [book.id, book]));
@@ -378,13 +398,29 @@ const closeDialog = () => {
 
 const openPreview = (id) => {
   const book = shopBookMap.get(id);
-  if (!book?.preview || !previewDialog || !previewTitle || !previewFrame || !previewOpen) return;
+  if (!book?.preview || !book.previewPages?.length || !previewDialog || !previewTitle || !previewPages || !previewOpen) return;
   if (dialog?.open) closeDialog();
   previewTitle.textContent = book.title;
-  previewFrame.title = `${book.title} PDF 試閱`;
-  previewFrame.src = `${book.preview}#toolbar=1&navpanes=0&view=FitH`;
+  previewPages.textContent = "";
+  book.previewPages.forEach((page, index) => {
+    const figure = document.createElement("figure");
+    const image = document.createElement("img");
+    const caption = document.createElement("figcaption");
+    figure.className = "preview-page";
+    image.src = page.src;
+    image.alt = `${book.title} 原書第 ${page.page} 頁`;
+    image.width = 910;
+    image.height = 1287;
+    image.loading = index === 0 ? "eager" : "lazy";
+    image.decoding = "async";
+    caption.textContent = `原書第 ${page.page} 頁`;
+    figure.append(image, caption);
+    previewPages.append(figure);
+  });
+  previewPages.scrollTop = 0;
   previewOpen.href = book.preview;
-  previewOpen.setAttribute("aria-label", `另開 ${book.title} 試閱 PDF`);
+  previewOpen.setAttribute("download", `${book.id}-preview.pdf`);
+  previewOpen.setAttribute("aria-label", `下載 ${book.title} 試閱 PDF`);
   previewDialog.showModal();
   syncModalOpenState();
 };
@@ -392,7 +428,7 @@ const openPreview = (id) => {
 const closePreview = () => {
   if (!previewDialog?.open) return;
   previewDialog.close();
-  if (previewFrame) previewFrame.src = "about:blank";
+  if (previewPages) previewPages.textContent = "";
   syncModalOpenState();
 };
 
@@ -753,7 +789,7 @@ previewDialog?.addEventListener("click", (event) => {
 });
 
 previewDialog?.addEventListener("close", () => {
-  if (previewFrame) previewFrame.src = "about:blank";
+  if (previewPages) previewPages.textContent = "";
   syncModalOpenState();
 });
 
