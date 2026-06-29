@@ -25,11 +25,19 @@
     <meta name="twitter:description" content="美業教育、SPA顧問、品牌經營與電子書。" />
     <meta name="twitter:image" content="https://spa.petrichor.tw/assets/hero-exact-scene.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="assets/fonts/iansui-site.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/noto-sans-tc-site.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link rel="preload" href="assets/hero-exact-scene.webp" as="image" type="image/webp" />
 
@@ -80,7 +88,7 @@
       }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20260629-mobile-preview" />
+    <link rel="stylesheet" href="styles.css?v=20260629-local-fonts" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -428,7 +436,11 @@
         </div>
       </footer>
 
-      <button class="back-to-top" type="button" data-back-top aria-label="回到頂端">⌃</button>
+      <button class="back-to-top" type="button" data-back-top aria-label="回到頂端">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m7 14 5-5 5 5" />
+        </svg>
+      </button>
     </div>
 
     <div class="mobile-cart-bar" data-mobile-cart aria-live="polite" hidden>
@@ -486,6 +498,6 @@
       </div>
     </dialog>
 
-    <script src="main.js?v=20260629-mobile-preview"></script>
+    <script src="main.js?v=20260629-local-fonts"></script>
   </body>
 </html>

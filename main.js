@@ -1,3 +1,19 @@
+const siteFontFaces = [
+  '400 1em "Iansui Site"',
+  '400 1em "Noto Sans TC Site"',
+  '700 1em "Noto Sans TC Site"'
+];
+
+if (document.fonts) {
+  Promise.all(siteFontFaces.map((font) => document.fonts.load(font)))
+    .then(() => {
+      document.documentElement.classList.add("fonts-ready");
+    })
+    .catch(() => {
+      document.documentElement.classList.add("fonts-fallback");
+    });
+}
+
 const modalContent = {
   "timeline-beautician": {
     kicker: "專業歷程",
