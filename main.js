@@ -177,7 +177,7 @@ const modalContent = {
   },
   "service-lucky": {
     kicker: "服務與專長",
-    title: "我想加入美業聯盟",
+    title: "我想了解幸運竹SPA",
     body: "我以幸運竹SPA串聯自然植物、芳療與身心療癒，也以mmap.tw串聯全台美業名店、教育、導客與AI行銷。",
     points: ["希望加入美業聯盟、擴大曝光與共同導客的店家。", "透過幸運竹SPA與美萌台灣地圖串聯名店、教育、採購與AI行銷。", "先從品牌資料、服務特色與可合作資源建立聯盟入口。"]
   }
@@ -580,7 +580,7 @@ const renderShopCart = () => {
   document.querySelectorAll("[data-add-book]").forEach((button) => {
     const id = button.getAttribute("data-add-book");
     const isSelected = selectedShopBookIds.has(id);
-    button.textContent = isSelected ? "已加入" : "加入";
+    button.textContent = isSelected ? "已加入" : "加入選購";
     button.disabled = isSelected;
   });
 };
