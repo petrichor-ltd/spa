@@ -151,6 +151,46 @@ const modalContent = {
     link: "#book-shop",
     actionLabel: "前往選購"
   },
+  "book-ai-profit": {
+    kicker: "電子書",
+    title: "AI 美業獲利術",
+    body: "把四十多年美業實戰轉成 AI 時代可落地的經營方法，從導客、成交到回購，讓一人工作室也能建立有效率的獲利系統。",
+    points: ["以美業現場為核心，整理導客、會員經營、成交話術與內容行銷的 AI 應用。", "適合想節省行政與行銷時間、建立穩定顧客流程的美容師與經營者。", "AI 是放大專業的助手，讓經驗更快被整理、執行與驗證。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
+  "book-bride": {
+    kicker: "電子書",
+    title: "新娘：從女兒到妻子",
+    body: "婚禮不只是一天的妝容，而是一場身、心、靈的成熟旅程；從婚前一年開始，循序準備最自在有力量的自己。",
+    points: ["依婚前十二個月到七天，整理婚禮、肌膚、體態與生活節奏的準備重點。", "結合保養、美學、芳療與婚姻角色轉換，照顧外在也安定內在。", "適合準新娘、陪伴女兒出嫁的家人，以及提供新娘服務的美業工作者。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
+  "book-face-20": {
+    kicker: "電子書・林心樂",
+    title: "妳的臉，決定下一個 20 年！",
+    body: "林心樂老師從三十多年美業經驗出發，陪伴女性從一張臉看見健康、情緒、能量與人生，重新把照顧自己的主導權找回來。",
+    points: ["以每天十分鐘的練習，從容顏、呼吸與情緒開始照顧自己。", "不追求快速變年輕，而是為未來二十年的健康、笑容與生命力累積改變。", "適合總把工作與家人放在前面、想重新看見自己的女性讀者。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
+  "book-love-home": {
+    kicker: "電子書・林鈺庭",
+    title: "懂愛，家就有光",
+    body: "林鈺庭老師把芳香療法、心理覺察與生命經驗帶進家庭關係，從愛自己開始，讓愛重新流動。",
+    points: ["理解依附、溝通與家庭角色，辨認關係裡反覆出現的情緒模式。", "透過界線、內在小孩與芳香療癒，安放身體記憶與親密關係中的不安。", "適合想改善伴侶、親子與家庭互動，也想找回內在安定的讀者。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
+  "book-life-water": {
+    kicker: "電子書",
+    title: "喚醒生命的水",
+    body: "從德國 Kneipp 自然療法出發，連結水療、植物、運動、飲食與生活秩序，讓自然重新走進 SPA 實務與日常健康。",
+    points: ["認識 Kneipp 自然療法的歷史、精神，以及水療對循環、神經與睡眠的影響。", "結合四十多年 SPA、水療與身心照護經驗，提供能融入生活的自然方法。", "適合 SPA 工作者、健康教育者，以及想找回身心節奏的讀者。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
   "service-startup": {
     kicker: "服務與專長",
     title: "我想開SPA店",
@@ -267,6 +307,66 @@ const shopBooks = [
       { page: 2, src: "preview-pages/meridian/page-02.webp" },
       { page: 3, src: "preview-pages/meridian/page-03.webp" },
       { page: 4, src: "preview-pages/meridian/page-04.webp" }
+    ]
+  },
+  {
+    id: "ai-profit",
+    title: "AI 美業獲利術",
+    image: "img/book-ai-profit.jpg",
+    modal: "book-ai-profit",
+    preview: "preview-books/ai-profit-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/ai-profit/page-02.webp" },
+      { page: 3, src: "preview-pages/ai-profit/page-03.webp" },
+      { page: 4, src: "preview-pages/ai-profit/page-04.webp" }
+    ]
+  },
+  {
+    id: "bride",
+    title: "新娘：從女兒到妻子",
+    image: "img/book-bride.jpg",
+    modal: "book-bride",
+    preview: "preview-books/bride-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/bride/page-02.webp" },
+      { page: 3, src: "preview-pages/bride/page-03.webp" },
+      { page: 4, src: "preview-pages/bride/page-04.webp" }
+    ]
+  },
+  {
+    id: "face-20",
+    title: "妳的臉，決定下一個 20 年！",
+    image: "img/book-face-20.jpg",
+    modal: "book-face-20",
+    preview: "preview-books/face-20-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/face-20/page-02.webp" },
+      { page: 3, src: "preview-pages/face-20/page-03.webp" },
+      { page: 4, src: "preview-pages/face-20/page-04.webp" }
+    ]
+  },
+  {
+    id: "love-home",
+    title: "懂愛，家就有光",
+    image: "img/book-love-home.jpg",
+    modal: "book-love-home",
+    preview: "preview-books/love-home-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/love-home/page-02.webp" },
+      { page: 3, src: "preview-pages/love-home/page-03.webp" },
+      { page: 4, src: "preview-pages/love-home/page-04.webp" }
+    ]
+  },
+  {
+    id: "life-water",
+    title: "喚醒生命的水",
+    image: "img/book-life-water.jpg",
+    modal: "book-life-water",
+    preview: "preview-books/life-water-preview.pdf",
+    previewPages: [
+      { page: 2, src: "preview-pages/life-water/page-02.webp" },
+      { page: 3, src: "preview-pages/life-water/page-03.webp" },
+      { page: 4, src: "preview-pages/life-water/page-04.webp" }
     ]
   }
 ];
@@ -581,6 +681,7 @@ const renderShopCart = () => {
     const id = button.getAttribute("data-add-book");
     const isSelected = selectedShopBookIds.has(id);
     button.textContent = isSelected ? "已加入" : "加入選購";
+    button.setAttribute("aria-pressed", String(isSelected));
     button.disabled = isSelected;
   });
 };

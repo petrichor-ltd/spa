@@ -3133,7 +3133,7 @@ html[data-theme="dark"] .manual-payment-note b {
 
 .book-shop-shelf {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(18px, 2.2vw, 32px);
 }
 

@@ -76,19 +76,24 @@
           },
           {
             "@type": "ItemList",
-            "name": "王燕呢電子書",
+            "name": "精選電子書",
             "itemListElement": [
               { "@type": "Book", "position": 1, "name": "SPA 境界", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
               { "@type": "Book", "position": 2, "name": "AI 也在學做人", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
               { "@type": "Book", "position": 3, "name": "人生密碼", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
-              { "@type": "Book", "position": 4, "name": "經絡藏著你的情緒", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } }
+              { "@type": "Book", "position": 4, "name": "經絡藏著你的情緒", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 5, "name": "AI 美業獲利術", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 6, "name": "新娘：從女兒到妻子", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } },
+              { "@type": "Book", "position": 7, "name": "妳的臉，決定下一個 20 年！", "bookFormat": "https://schema.org/EBook", "author": { "@type": "Person", "name": "林心樂" } },
+              { "@type": "Book", "position": 8, "name": "懂愛，家就有光", "bookFormat": "https://schema.org/EBook", "author": { "@type": "Person", "name": "林鈺庭" } },
+              { "@type": "Book", "position": 9, "name": "喚醒生命的水", "bookFormat": "https://schema.org/EBook", "author": { "@id": "https://spa.petrichor.tw/#person" } }
             ]
           }
         ]
       }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20260630-editorial-v3" />
+    <link rel="stylesheet" href="styles.css?v=20260810-books-v1" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -241,13 +246,13 @@
           <div class="books-heading reveal">
             <p class="section-kicker">著作出版</p>
             <h2 id="books-title">把40年經驗，<br />帶回你的日常。</h2>
-            <p>從美業經營、AI應用到身心覺察；選擇 2 本 NT$300，或 4 本 NT$500。</p>
+            <p>從美業經營、AI應用到身心與家庭覺察；9 本精選電子書，任選 2 本 NT$300，或 4 本 NT$500。</p>
           </div>
 
           <section class="book-shop" id="book-shop" aria-labelledby="book-shop-title" data-book-shop data-payment-endpoint="">
             <h3 class="visually-hidden" id="book-shop-title">選購電子書</h3>
             <div class="book-shop-layout">
-              <div class="book-shop-shelf reveal" aria-label="可選購電子書">
+              <div class="book-shop-shelf reveal" aria-label="可選購電子書，共 9 本">
                 <article class="shop-book" tabindex="0" data-shop-source="spa">
                   <picture>
                     <source srcset="img/S__21012499.webp" type="image/webp" />
@@ -308,11 +313,86 @@
                     </div>
                   </div>
                 </article>
+                <article class="shop-book" tabindex="0" data-shop-source="ai-profit">
+                  <picture>
+                    <source srcset="img/book-ai-profit.webp" type="image/webp" />
+                    <img src="img/book-ai-profit.jpg" alt="AI 美業獲利術電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
+                    <span>電子書</span>
+                    <strong>AI 美業獲利術</strong>
+                    <small>從導客、成交、回購到內容行銷，讓 AI 成為美業獲利助手。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="ai-profit">試閱內容</button>
+                      <button type="button" data-add-book="ai-profit">加入選購</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" tabindex="0" data-shop-source="bride">
+                  <picture>
+                    <source srcset="img/book-bride.webp" type="image/webp" />
+                    <img src="img/book-bride.jpg" alt="新娘：從女兒到妻子電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
+                    <span>電子書</span>
+                    <strong>新娘：從女兒到妻子</strong>
+                    <small>婚前一年規劃肌膚、體態、芳療與幸福婚禮節奏。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="bride">試閱內容</button>
+                      <button type="button" data-add-book="bride">加入選購</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" tabindex="0" data-shop-source="face-20">
+                  <picture>
+                    <source srcset="img/book-face-20.webp" type="image/webp" />
+                    <img src="img/book-face-20.jpg" alt="妳的臉，決定下一個 20 年電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
+                    <span>電子書・林心樂</span>
+                    <strong>妳的臉，決定下一個 20 年！</strong>
+                    <small>每天 10 分鐘，從容顏看見健康、情緒與生命能量。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="face-20">試閱內容</button>
+                      <button type="button" data-add-book="face-20">加入選購</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" tabindex="0" data-shop-source="love-home">
+                  <picture>
+                    <source srcset="img/book-love-home.webp" type="image/webp" />
+                    <img src="img/book-love-home.jpg" alt="懂愛，家就有光電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
+                    <span>電子書・林鈺庭</span>
+                    <strong>懂愛，家就有光</strong>
+                    <small>從愛自己、親密關係到芳香療癒，讓愛在家庭重新流動。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="love-home">試閱內容</button>
+                      <button type="button" data-add-book="love-home">加入選購</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="shop-book" tabindex="0" data-shop-source="life-water">
+                  <picture>
+                    <source srcset="img/book-life-water.webp" type="image/webp" />
+                    <img src="img/book-life-water.jpg" alt="喚醒生命的水電子書封面" loading="lazy" />
+                  </picture>
+                  <div class="shop-book-copy">
+                    <span>電子書</span>
+                    <strong>喚醒生命的水</strong>
+                    <small>以 Kneipp 五大自然療法，找回循環、睡眠與身心平衡。</small>
+                    <div class="shop-book-actions">
+                      <button type="button" data-preview-book="life-water">試閱內容</button>
+                      <button type="button" data-add-book="life-water">加入選購</button>
+                    </div>
+                  </div>
+                </article>
               </div>
 
               <aside class="book-cart reveal" aria-label="選購摘要" data-delay="100">
                 <div class="cart-selection" data-cart-dropzone>
-                  <p data-cart-empty>尚未選書。請從左側加入 2 本或 4 本電子書。</p>
+                  <p data-cart-empty>尚未選書。請從書架任選 2 本或 4 本電子書。</p>
                   <div class="cart-items" data-cart-items aria-live="polite"></div>
                 </div>
                 <div class="cart-summary">
@@ -502,6 +582,6 @@
       </div>
     </dialog>
 
-    <script src="main.js?v=20260630-editorial-v3"></script>
+    <script src="main.js?v=20260810-books-v1"></script>
   </body>
 </html>
