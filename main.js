@@ -218,8 +218,8 @@ const modalContent = {
   "service-lucky": {
     kicker: "服務與專長",
     title: "我想了解幸運竹SPA",
-    body: "我以幸運竹SPA串聯自然植物、芳療與身心療癒，也以mmap.tw串聯全台美業名店、教育、導客與AI行銷。",
-    points: ["希望加入美業聯盟、擴大曝光與共同導客的店家。", "透過幸運竹SPA與美萌台灣地圖串聯名店、教育、採購與AI行銷。", "先從品牌資料、服務特色與可合作資源建立聯盟入口。"]
+    body: "我以幸運竹SPA串聯自然植物、芳療與身心照護，並分享品牌經營、教育培訓與產業合作經驗。",
+    points: ["希望深化芳療、自然照護或SPA品牌特色的經營者。", "整合服務設計、教育內容、品牌資源與合作機會。", "先從品牌資料、服務特色與可合作資源建立清楚入口。"]
   }
 };
 
@@ -259,6 +259,7 @@ let isBookShopInView = false;
 const themeStorageKey = "spa-theme-v2";
 const payuniFallbackPaymentUrl = "https://api.payuni.com.tw/api/uop/receive_info/2/1/BNNL27809884/GLeUenL68pDHZWBUlFdV";
 const payuniSigningEndpoint = document.querySelector("[data-book-shop]")?.dataset.paymentEndpoint?.trim() || "";
+const translateUI = (value) => window.siteI18n?.t?.(value) ?? value;
 
 const shopBooks = [
   {
@@ -396,7 +397,7 @@ const applyTheme = (theme) => {
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", nextTheme === "dark" ? "#0f1914" : "#fffaf2");
   if (!themeToggle) return;
   themeToggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
-  themeToggle.setAttribute("aria-label", nextTheme === "dark" ? "切換為淺色模式" : "切換為深色模式");
+  themeToggle.setAttribute("aria-label", translateUI(nextTheme === "dark" ? "切換為淺色模式" : "切換為深色模式"));
   const icon = themeToggle.querySelector("span");
   if (icon) icon.textContent = nextTheme === "dark" ? "☀" : "◐";
 };
@@ -404,7 +405,7 @@ const applyTheme = (theme) => {
 const setMenuOpen = (isOpen) => {
   if (!menuToggle || !siteNav) return;
   menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
+  menuToggle.setAttribute("aria-label", translateUI(isOpen ? "關閉導覽選單" : "開啟導覽選單"));
   siteNav.classList.toggle("is-open", isOpen);
   document.body.classList.toggle("menu-open", isOpen);
 };
@@ -428,7 +429,7 @@ applyTheme(getStoredTheme() || "light");
 
 const showToast = (message, duration = 1800) => {
   if (!toast) return;
-  toast.textContent = message;
+  toast.textContent = translateUI(message);
   toast.classList.add("is-visible");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("is-visible"), duration);
@@ -937,3 +938,9 @@ window.addEventListener(
   },
   { passive: true }
 );
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 960 && menuToggle?.getAttribute("aria-expanded") === "true") {
+    setMenuOpen(false);
+  }
+});

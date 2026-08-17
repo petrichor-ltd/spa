@@ -13,23 +13,28 @@
     "美容教育 × SPA產業 × 身心平衡": "Beauty Education × SPA Industry × Wellbeing",
     "主要導覽": "Main navigation",
     "馬上鑽": "MAZUAN",
+    "顧問服務": "Services",
+    "出版著作": "Books",
+    "經歷信念": "Journey",
     "服務與專長": "Services & Expertise",
     "著作出版": "Publications",
     "專業歷程": "Professional Journey",
     "語言選擇": "Language selector",
-    "購買馬上鑽": "Buy MAZUAN",
+    "聯絡": "CONTACT",
+    "聯絡我": "Contact",
+    "正在前往聯絡方式": "Opening contact options",
     "正在開啟嘖嘖購買頁": "Opening the Zeczec campaign",
     "切換深淺色模式": "Toggle color theme",
     "開啟導覽選單": "Open navigation menu",
     "關閉導覽選單": "Close navigation menu",
 
-    "我把40年美業實戰，": "I have distilled 40 years of hands-on beauty-industry experience",
-    "整理成下一代": "into a clearer path for",
-    "美容人的路。": "the next generation.",
+    "我把40年美業實戰，": "Forty years in beauty, distilled.",
+    "整理成下一代": "Guiding beauty’s",
+    "美容人的路。": "next generation.",
     "王燕呢": "Yanni Wang",
     "網站主要入口": "Primary website links",
-    "認識馬上鑽": "Discover MAZUAN",
-    "找顧問／合作": "Consulting & Partnerships",
+    "顧問與合作": "Work With Me",
+    "馬上鑽專案": "MAZUAN Project",
     "專業，是我的起點；": "Expertise is where I begin;",
     "陪伴，是我的使命。": "support is my purpose.",
     "專業資歷": "Professional credentials",
@@ -42,6 +47,7 @@
     "往下閱讀": "Continue reading",
 
     "日常自我照顧工具": "EVERYDAY SELF-CARE TOOL",
+    "四合一不插電手持按摩工具": "4 in 1 NonElectric Handheld Massage Tool",
     "馬上鑽｜四合一": "MAZUAN | 4 in 1",
     "不插電手持按摩工具": "NonElectric Handheld Massage Tool",
     "一支在手，四面靈活運用。無需插電或充電，依照身體部位與個人感受調整接觸面與力道，讓居家、辦公室或旅途中，都能隨時安排一段舒服的放鬆時間。": "Four useful surfaces in one handheld tool. With no plug or charging required, you can choose the contact surface and pressure that feel right for each area—at home, at work, or while traveling.",
@@ -183,6 +189,9 @@
     "讓我們一起，": "Together, let’s build",
     "成就更美好的美業未來。": "a better future for beauty.",
     "從一個問題開始，找到下一步更清楚的方向。": "Start with one question and find a clearer next step.",
+    "顧問與合作洽詢": "Consulting & Partnerships",
+    "聯絡王燕呢理事長": "Contact Chairperson Yanni Wang",
+    "SPA 顧問、美業教育、品牌與產業合作": "SPA consulting, beauty education, brand and industry partnerships",
     "官方 LINE": "Official LINE",
     "加入好友，開始聯絡": "Add us and start a conversation",
     "手機可直接點擊，桌機可掃描 QR Code": "Tap on mobile or scan the QR code on desktop",
@@ -199,7 +208,7 @@
     "官方網站": "Official website",
     "協會": "Association",
     "線上資訊": "Online information",
-    "© 2026 王燕呢顧問｜台灣SPA協會｜版權所有": "© 2026 Consultant Yanni Wang | Taiwan SPA Association | All rights reserved",
+    "© 2026 志麗美容科技｜王燕呢理事長｜版權所有": "© 2026 Zhili Beauty Technology | Chairperson Yanni Wang | All rights reserved",
     "回到頂端": "Back to top",
     "確認訂單": "Review order",
 
@@ -293,10 +302,10 @@
     "想開發產品、包裝品牌或建立教育課程的美業品牌。": "Beauty brands developing products, packaging, or educational programs.",
     "協助美容產品OEM、品牌包裝、教育訓練與國際SPA規劃。": "Support with beauty-product OEM, brand packaging, training, and international SPA planning.",
     "先整理品牌定位、產品線、價格帶與課程架構。": "Begin with brand positioning, product range, pricing, and curriculum structure.",
-    "我以幸運竹SPA串聯自然植物、芳療與身心療癒，也以mmap.tw串聯全台美業名店、教育、導客與AI行銷。": "Through Lucky Bamboo SPA I connect botanicals, aromatherapy, and holistic wellbeing; through mmap.tw I connect leading beauty businesses across Taiwan with education, customer acquisition, and AI marketing.",
-    "希望加入美業聯盟、擴大曝光與共同導客的店家。": "Businesses that want to join a beauty network, increase visibility, and share customer-acquisition opportunities.",
-    "透過幸運竹SPA與美萌台灣地圖串聯名店、教育、採購與AI行銷。": "Connect leading businesses, education, purchasing, and AI marketing through Lucky Bamboo SPA and the Taiwan Beauty Map.",
-    "先從品牌資料、服務特色與可合作資源建立聯盟入口。": "Start by organizing your brand profile, service strengths, and collaboration resources.",
+    "我以幸運竹SPA串聯自然植物、芳療與身心照護，並分享品牌經營、教育培訓與產業合作經驗。": "Through Lucky Bamboo SPA, I bring together botanicals, aromatherapy, holistic care, brand development, professional education, and industry partnerships.",
+    "希望深化芳療、自然照護或SPA品牌特色的經營者。": "SPA owners who want to strengthen their aromatherapy, natural-care, or brand experience.",
+    "整合服務設計、教育內容、品牌資源與合作機會。": "Bring service design, education, brand resources, and partnership opportunities into one clear direction.",
+    "先從品牌資料、服務特色與可合作資源建立清楚入口。": "Start by organizing your brand profile, service strengths, and partnership resources.",
 
     "美業菁英星光大道。這本書整理美學職人創業與經營的真心話，陪伴美容人看見自己的方向。": "This book gathers honest lessons from aesthetic professionals on entrepreneurship and operations, helping beauty professionals see their own direction.",
     "從美學職人的創業現場出發，建立品牌定位與專業視角。": "Build brand positioning and a professional perspective from real entrepreneurial experience.",
@@ -449,20 +458,21 @@
 
   const updateMetadata = () => {
     if (!isEnglish) return;
-    const title = "MAZUAN | 4 in 1 NonElectric Handheld Massage Tool | Zhili Beauty Technology";
-    const description = "Discover MAZUAN, a compact four-surface handheld massage tool that requires no electricity, plus SPA consulting, beauty education, and publications by Yanni Wang.";
+    const title = "Zhili Beauty Technology";
+    const description = "The official website of Chairperson Yanni Wang: forty years of beauty-industry experience, SPA consulting, beauty education, brand strategy, publications, and the featured MAZUAN project.";
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://spa.petrichor.tw/?lang=en");
     document.querySelector('meta[property="og:site_name"]')?.setAttribute("content", "Zhili Beauty Technology");
-    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "MAZUAN | 4 in 1 NonElectric Handheld Massage Tool");
-    document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Four useful surfaces, no electricity, and compact everyday portability. View current options on Zeczec.");
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Zhili Beauty Technology | Chairperson Yanni Wang");
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Forty years of beauty-industry experience, SPA consulting, education, brand strategy, publications, and product development.");
     document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://spa.petrichor.tw/?lang=en");
     document.querySelector('meta[property="og:locale"]')?.setAttribute("content", "en_US");
-    document.querySelector('meta[property="og:image:alt"]')?.setAttribute("content", "MAZUAN 4 in 1 NonElectric Handheld Massage Tool in use");
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", "MAZUAN | 4 in 1 NonElectric Handheld Massage Tool");
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", "Four useful surfaces, no electricity, and compact everyday portability. View current options on Zeczec.");
-    document.querySelector('meta[name="twitter:image:alt"]')?.setAttribute("content", "MAZUAN 4 in 1 NonElectric Handheld Massage Tool in use");
+    document.querySelector('meta[property="og:locale:alternate"]')?.setAttribute("content", "zh_TW");
+    document.querySelector('meta[property="og:image:alt"]')?.setAttribute("content", "The official website of Zhili Beauty Technology and Chairperson Yanni Wang");
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", "Zhili Beauty Technology | Chairperson Yanni Wang");
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", "SPA industry consulting, beauty education, brand strategy, publications, and product development.");
+    document.querySelector('meta[name="twitter:image:alt"]')?.setAttribute("content", "The official website of Zhili Beauty Technology and Chairperson Yanni Wang");
   };
 
   const syncLanguageSwitcher = () => {

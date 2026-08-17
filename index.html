@@ -6,7 +6,7 @@
     <title>志麗美容科技</title>
     <meta
       name="description"
-      content="志麗美容科技王燕呢理事長官方網站。40年美業實戰，提供 SPA 創業、品牌經營、美業教育、AI 應用顧問服務，並分享著作與馬上鑽 MAZUAN 專案。"
+      content="志麗美容科技官方網站。台灣 SPA 協會理事長王燕呢擁有40年美業實戰經驗，提供 SPA 創業、品牌經營、美業教育、AI 應用顧問服務，並分享著作與馬上鑽 MAZUAN 專案。"
     />
     <meta name="theme-color" content="#fffaf2" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -52,6 +52,10 @@
     <script>
       (() => {
         document.documentElement.classList.add("js");
+        const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+        const initialLocale = requestedLanguage === "en" ? "en" : "zh-Hant";
+        document.documentElement.lang = initialLocale;
+        document.documentElement.dataset.locale = initialLocale;
         try {
           const storedTheme = localStorage.getItem("spa-theme-v2");
           document.documentElement.dataset.theme = storedTheme === "dark" ? "dark" : "light";
@@ -70,10 +74,17 @@
             "@id": "https://spa.petrichor.tw/#person",
             "name": "王燕呢",
             "url": "https://spa.petrichor.tw/",
-            "jobTitle": "SPA產業顧問與美業教育者",
+            "jobTitle": "台灣SPA協會理事長、SPA產業顧問與美業教育者",
             "description": "台灣SPA協會理事長，40年美業實戰經驗，提供SPA創業、品牌經營、美業教育與AI應用顧問服務。",
             "email": "mailto:ubodyspa@gmail.com",
-            "telephone": "+886-3-321-7766"
+            "telephone": "+886-3-321-7766",
+            "worksFor": { "@id": "https://spa.petrichor.tw/#organization" },
+            "affiliation": {
+              "@type": "Organization",
+              "name": "台灣SPA協會",
+              "url": "https://www.twspa.tw/"
+            },
+            "knowsAbout": ["SPA產業顧問", "美業教育", "品牌經營", "美容產品研發", "AI美業應用", "自然療法"]
           },
           {
             "@type": "Organization",
@@ -90,6 +101,16 @@
             "alternateName": "Zhili Beauty Technology",
             "inLanguage": ["zh-Hant-TW", "en"],
             "publisher": { "@id": "https://spa.petrichor.tw/#organization" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://spa.petrichor.tw/#profile",
+            "url": "https://spa.petrichor.tw/",
+            "name": "志麗美容科技｜王燕呢理事長",
+            "description": "台灣SPA協會理事長王燕呢的專業網站，分享SPA產業顧問服務、美業教育、著作與產品開發。",
+            "inLanguage": ["zh-Hant-TW", "en"],
+            "isPartOf": { "@id": "https://spa.petrichor.tw/#website" },
+            "mainEntity": { "@id": "https://spa.petrichor.tw/#person" }
           },
           {
             "@type": "Product",
@@ -126,7 +147,7 @@
       }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=20260817-mazuan-v1" />
+    <link rel="stylesheet" href="styles.css?v=20260817-profile-v2" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -156,9 +177,10 @@
             <a
               class="header-line-link"
               href="#contact"
+              aria-label="聯絡王燕呢理事長"
               data-toast="正在前往聯絡方式"
             >
-              <span aria-hidden="true">聯絡</span>
+              <span aria-hidden="true">✦</span>
               <strong>聯絡我</strong>
             </a>
             <button class="theme-toggle" type="button" data-theme-toggle aria-label="切換深淺色模式" aria-pressed="false">
@@ -274,52 +296,6 @@
               <small>連結資源與人脈，擴大影響力與合作機會</small>
               <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
             </button>
-          </div>
-        </section>
-
-        <section class="mazuan-section section" id="mazuan" aria-labelledby="mazuan-title" data-nav-section>
-          <div class="mazuan-visual reveal">
-            <div class="mazuan-image-frame">
-              <picture>
-                <source srcset="assets/mazuan-product.webp" type="image/webp" />
-                <img
-                  src="assets/mazuan-product.jpg"
-                  width="896"
-                  height="1113"
-                  loading="lazy"
-                  decoding="async"
-                  alt="家人使用馬上鑽四合一不插電手持按摩工具協助肩頸放鬆"
-                />
-              </picture>
-              <span class="mazuan-image-label">NO POWER · READY ANYTIME</span>
-            </div>
-          </div>
-          <div class="mazuan-content reveal" data-delay="100">
-            <p class="section-kicker">日常自我照顧工具</p>
-            <h2 id="mazuan-title">馬上鑽</h2>
-            <p class="mazuan-local-name">四合一不插電手持按摩工具</p>
-            <p class="mazuan-english-name" lang="en">MAZUAN | 4 in 1 NonElectric Handheld Massage Tool</p>
-            <p class="mazuan-lead">一支在手，四面靈活運用。無需插電或充電，依照身體部位與個人感受調整接觸面與力道，讓居家、辦公室或旅途中，都能隨時安排一段舒服的放鬆時間。</p>
-            <ul class="mazuan-features" aria-label="馬上鑽產品特色">
-              <li><span>01</span><div><strong>四面一體</strong><small>以不同接觸面回應肩頸、手臂、腿部等日常放鬆需求。</small></div></li>
-              <li><span>02</span><div><strong>完全不插電</strong><small>不需電池、不必充電，拿起來就能使用。</small></div></li>
-              <li><span>03</span><div><strong>輕巧好攜帶</strong><small>在家自用、家人互按，外出也能隨身帶著走。</small></div></li>
-              <li><span>04</span><div><strong>好上手、好清潔</strong><small>可依個人習慣搭配按摩油或乳霜，使用後擦拭清潔。</small></div></li>
-            </ul>
-            <div class="mazuan-actions">
-              <a
-                class="button button-primary mazuan-buy-button"
-                href="https://www.zeczec.com/projects/ma-shang-zuan-si-mian-ti-de-bu-cha-dian-shou-chi-an-mo-gong-ju?r=d253453893449"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-toast="正在開啟嘖嘖購買頁"
-              >
-                前往嘖嘖查看方案
-                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
-              </a>
-              <small>方案內容、售價與出貨資訊以嘖嘖專案頁為準。</small>
-            </div>
-            <p class="mazuan-safety"><strong>安心提醒</strong> 本產品為日常按摩放鬆工具，不是醫療器材，亦不能取代診斷或治療。請依自身感受輕柔使用；如有傷口、急性不適或特殊健康狀況，使用前請先諮詢專業醫療人員。</p>
           </div>
         </section>
 
@@ -578,6 +554,52 @@
             <article><strong>傳承與共好</strong><small>成就年輕世代，創造美業新價值。</small></article>
           </div>
         </section>
+
+        <section class="mazuan-section section" id="mazuan" aria-labelledby="mazuan-title" data-nav-section>
+          <div class="mazuan-visual reveal">
+            <div class="mazuan-image-frame">
+              <picture>
+                <source srcset="assets/mazuan-product.webp" type="image/webp" />
+                <img
+                  src="assets/mazuan-product.jpg"
+                  width="896"
+                  height="1113"
+                  loading="lazy"
+                  decoding="async"
+                  alt="家人使用馬上鑽四合一不插電手持按摩工具協助肩頸放鬆"
+                />
+              </picture>
+              <span class="mazuan-image-label">NO POWER · READY ANYTIME</span>
+            </div>
+          </div>
+          <div class="mazuan-content reveal" data-delay="100">
+            <p class="section-kicker">日常自我照顧工具</p>
+            <h2 id="mazuan-title">馬上鑽</h2>
+            <p class="mazuan-local-name">四合一不插電手持按摩工具</p>
+            <p class="mazuan-english-name" lang="en">MAZUAN | 4 in 1 NonElectric Handheld Massage Tool</p>
+            <p class="mazuan-lead">一支在手，四面靈活運用。無需插電或充電，依照身體部位與個人感受調整接觸面與力道，讓居家、辦公室或旅途中，都能隨時安排一段舒服的放鬆時間。</p>
+            <ul class="mazuan-features" aria-label="馬上鑽產品特色">
+              <li><span>01</span><div><strong>四面一體</strong><small>以不同接觸面回應肩頸、手臂、腿部等日常放鬆需求。</small></div></li>
+              <li><span>02</span><div><strong>完全不插電</strong><small>不需電池、不必充電，拿起來就能使用。</small></div></li>
+              <li><span>03</span><div><strong>輕巧好攜帶</strong><small>在家自用、家人互按，外出也能隨身帶著走。</small></div></li>
+              <li><span>04</span><div><strong>好上手、好清潔</strong><small>可依個人習慣搭配按摩油或乳霜，使用後擦拭清潔。</small></div></li>
+            </ul>
+            <div class="mazuan-actions">
+              <a
+                class="button button-primary mazuan-buy-button"
+                href="https://www.zeczec.com/projects/ma-shang-zuan-si-mian-ti-de-bu-cha-dian-shou-chi-an-mo-gong-ju?r=d253453893449"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-toast="正在開啟嘖嘖購買頁"
+              >
+                前往嘖嘖查看方案
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+              </a>
+              <small>方案內容、售價與出貨資訊以嘖嘖專案頁為準。</small>
+            </div>
+            <p class="mazuan-safety"><strong>安心提醒</strong> 本產品為日常按摩放鬆工具，不是醫療器材，亦不能取代診斷或治療。請依自身感受輕柔使用；如有傷口、急性不適或特殊健康狀況，使用前請先諮詢專業醫療人員。</p>
+          </div>
+        </section>
       </main>
 
       <footer class="contact-section" id="contact" data-nav-section>
@@ -663,7 +685,7 @@
       </div>
     </dialog>
 
-    <script src="locale.js?v=20260817-mazuan-v1"></script>
-    <script src="main.js?v=20260817-mazuan-v1"></script>
+    <script src="locale.js?v=20260817-profile-v2"></script>
+    <script src="main.js?v=20260817-profile-v2"></script>
   </body>
 </html>

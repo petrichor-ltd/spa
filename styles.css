@@ -3612,7 +3612,7 @@ html[data-theme="dark"] .manual-payment-note b {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 760px) {
   :root {
     --header-height: 68px;
   }
@@ -3631,6 +3631,7 @@ html[data-theme="dark"] .manual-payment-note b {
   }
 
   .hero-inner {
+    width: 100%;
     min-height: 642px;
   }
 
@@ -4080,12 +4081,25 @@ html[data-theme="dark"] .manual-payment-note b {
   letter-spacing: 0.025em;
 }
 
+.mazuan-local-name {
+  margin: 10px 0 0;
+  color: #fff5df;
+  font-family: var(--display);
+  font-size: clamp(1.28rem, 2vw, 1.72rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.035em;
+}
+
 .mazuan-english-name {
   margin: 18px 0 0;
+  max-width: 620px;
   color: #dfbf78;
   font-family: ui-serif, Georgia, "Times New Roman", serif;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
   letter-spacing: 0.025em;
+  text-wrap: balance;
 }
 
 .mazuan-lead {
@@ -4188,6 +4202,37 @@ html[data-locale="en"] {
   --display: ui-serif, Georgia, "Times New Roman", serif;
 }
 
+.hero-title-line {
+  display: inline-block;
+}
+
+html[data-locale="en"] .brand-sub,
+html[data-locale="en"] .hero-vertical-quote,
+html[data-locale="en"] .mazuan-local-name {
+  display: none;
+}
+
+html[data-locale="en"] .hero-copy {
+  width: min(650px, 58vw);
+}
+
+html[data-locale="en"] .hero h1 {
+  max-width: 650px;
+  font-size: clamp(2.8rem, 4.2vw, 4.2rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+html[data-locale="en"] .hero-title-line {
+  white-space: nowrap;
+}
+
+html[data-locale="en"] .hero-proof strong {
+  max-width: 240px;
+  font-size: 0.86rem;
+  line-height: 1.25;
+}
+
 html[data-locale="en"] .hero h1,
 html[data-locale="en"] .authority-intro h2,
 html[data-locale="en"] .services-intro h2,
@@ -4199,6 +4244,65 @@ html[data-locale="en"] .mazuan-content h2 {
 
 html[data-locale="en"] .mazuan-content h2 {
   font-size: clamp(2.35rem, 4vw, 3.85rem);
+}
+
+/* The English labels need more room than the Chinese navigation. */
+@media (max-width: 960px) {
+  .header-inner {
+    width: 100%;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    border-radius: 50%;
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: var(--header-height) 0 auto;
+    z-index: 99;
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 12px 20px 20px;
+    background: color-mix(in srgb, var(--paper) 97%, transparent);
+    border-bottom: 1px solid var(--line-strong);
+    box-shadow: 0 18px 38px rgba(38, 30, 17, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-14px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .site-nav a {
+    min-height: 52px;
+    padding: 0 4px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.94rem;
+    white-space: nowrap;
+  }
+
+  .site-nav a::after {
+    display: none;
+  }
+
+  .site-nav a.is-active {
+    color: var(--red);
+  }
 }
 
 @media (max-width: 1080px) {
@@ -4216,6 +4320,16 @@ html[data-locale="en"] .mazuan-content h2 {
 
   .mazuan-features li {
     min-height: 148px;
+  }
+}
+
+@media (max-width: 820px) {
+  html[data-locale="en"] .hero-copy {
+    width: min(470px, 72vw);
+  }
+
+  html[data-locale="en"] .hero h1 {
+    font-size: clamp(2.55rem, 6.2vw, 3.25rem);
   }
 }
 
@@ -4308,6 +4422,20 @@ html[data-locale="en"] .mazuan-content h2 {
   .mazuan-actions > small {
     max-width: none;
   }
+
+  html[data-locale="en"] .hero-copy {
+    width: min(330px, 84vw);
+  }
+
+  html[data-locale="en"] .hero h1 {
+    font-size: clamp(1.95rem, 8.4vw, 2.45rem);
+    line-height: 1.12;
+  }
+
+  html[data-locale="en"] .hero-proof strong {
+    font-size: 0.67rem;
+    line-height: 1.35;
+  }
 }
 
 @media (max-width: 520px) {
@@ -4323,11 +4451,42 @@ html[data-locale="en"] .mazuan-content h2 {
   }
 
   html[data-locale="en"] .brand-name {
-    max-width: 114px;
-    overflow: hidden;
-    font-size: 0.86rem;
-    text-overflow: ellipsis;
+    max-width: 142px;
+    font-size: 0.72rem;
+    line-height: 1.15;
+    letter-spacing: 0;
     white-space: nowrap;
+  }
+
+  html[data-locale="en"] .hero-cta {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-locale="en"] .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.15rem);
+  }
+
+  html[data-locale="en"] .hero-handwriting,
+  html[data-locale="en"] .hero h1,
+  html[data-locale="en"] .hero-signature {
+    text-shadow:
+      0 1px 2px rgba(255, 250, 242, 1),
+      0 0 12px rgba(255, 250, 242, 0.96),
+      0 0 24px rgba(255, 250, 242, 0.72);
+  }
+
+  html[data-locale="en"] .hero-signature {
+    margin-left: 34%;
+  }
+
+  html[data-locale="en"] .hero-proof strong {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .theme-toggle {
+    display: none;
   }
 }
 
