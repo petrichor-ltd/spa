@@ -3510,6 +3510,19 @@ html[data-theme="dark"] .manual-payment-note b {
   height: 92px;
 }
 
+.contact-campaign-mark {
+  display: grid;
+  width: 92px;
+  height: 92px;
+  place-items: center;
+  color: #fff4d8;
+  background: rgba(156, 68, 60, 0.82);
+  border: 1px solid rgba(239, 211, 143, 0.5);
+  font-family: var(--display);
+  font-size: 0.98rem;
+  letter-spacing: 0.08em;
+}
+
 .contact-links {
   grid-area: links;
 }
@@ -3945,4 +3958,393 @@ html[data-theme="dark"] .manual-payment-note b {
 @keyframes dialog-in {
   from { opacity: 0; transform: translateY(10px) scale(0.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 8. MAZUAN 產品入口與雙語導覽 */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 42px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.language-switch a {
+  display: inline-grid;
+  min-width: 25px;
+  min-height: 34px;
+  place-items: center;
+  border-bottom: 1px solid transparent;
+}
+
+.language-switch a:hover,
+.language-switch a:focus-visible,
+.language-switch a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--gold);
+}
+
+.header-line-link span {
+  background: var(--red);
+}
+
+.mazuan-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(54px, 7vw, 106px);
+  align-items: center;
+  overflow: hidden;
+  color: #f7edda;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(229, 198, 126, 0.14), transparent 26%),
+    linear-gradient(135deg, #0a2c20 0%, #123c2a 54%, #0b2d21 100%);
+  border-bottom: 1px solid rgba(238, 210, 150, 0.2);
+}
+
+.mazuan-section::after {
+  position: absolute;
+  right: -7vw;
+  bottom: -17vw;
+  width: min(52vw, 680px);
+  aspect-ratio: 1;
+  content: "";
+  border: 1px solid rgba(238, 210, 150, 0.13);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 70px rgba(238, 210, 150, 0.025),
+    0 0 0 140px rgba(238, 210, 150, 0.018);
+  pointer-events: none;
+}
+
+.mazuan-visual,
+.mazuan-content {
+  position: relative;
+  z-index: 1;
+}
+
+.mazuan-image-frame {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 0 auto;
+  padding: 12px;
+  background: rgba(255, 250, 240, 0.06);
+  border: 1px solid rgba(238, 210, 150, 0.34);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.26);
+}
+
+.mazuan-image-frame img {
+  width: 100%;
+  height: min(66vw, 640px);
+  min-height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.mazuan-image-label {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  padding: 8px 11px;
+  color: #fff5df;
+  background: rgba(8, 39, 28, 0.82);
+  border: 1px solid rgba(238, 210, 150, 0.36);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  backdrop-filter: blur(8px);
+}
+
+.mazuan-content {
+  max-width: 660px;
+}
+
+.mazuan-content .section-kicker {
+  color: #e8c986;
+}
+
+.mazuan-content .section-kicker::before {
+  background: #e8c986;
+}
+
+.mazuan-content h2 {
+  margin: 0;
+  color: #fff6e5;
+  font-size: clamp(2.55rem, 4.5vw, 4.35rem);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0.025em;
+}
+
+.mazuan-english-name {
+  margin: 18px 0 0;
+  color: #dfbf78;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  letter-spacing: 0.025em;
+}
+
+.mazuan-lead {
+  max-width: 620px;
+  margin: 28px 0 0;
+  color: rgba(250, 238, 214, 0.79);
+  font-size: 0.93rem;
+  line-height: 2;
+}
+
+.mazuan-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(238, 210, 150, 0.24);
+  border-left: 1px solid rgba(238, 210, 150, 0.24);
+}
+
+.mazuan-features li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  min-height: 132px;
+  padding: 21px 18px;
+  border-right: 1px solid rgba(238, 210, 150, 0.24);
+  border-bottom: 1px solid rgba(238, 210, 150, 0.24);
+}
+
+.mazuan-features li > span {
+  color: #d7af5c;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+}
+
+.mazuan-features strong,
+.mazuan-features small {
+  display: block;
+}
+
+.mazuan-features strong {
+  color: #fff5df;
+  font-family: var(--display);
+  font-size: 1.02rem;
+  font-weight: 400;
+}
+
+.mazuan-features small {
+  margin-top: 7px;
+  color: rgba(250, 238, 214, 0.66);
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+.mazuan-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.mazuan-buy-button {
+  flex: 0 0 auto;
+  color: #173725;
+  background: #e4c781;
+  border-color: #e4c781;
+}
+
+.mazuan-buy-button:hover,
+.mazuan-buy-button:focus-visible {
+  color: #0b2d21;
+  background: #f0d99d;
+}
+
+.mazuan-actions > small {
+  max-width: 250px;
+  color: rgba(250, 238, 214, 0.58);
+  font-size: 0.69rem;
+  line-height: 1.55;
+}
+
+.mazuan-safety {
+  margin: 25px 0 0;
+  padding: 14px 16px;
+  color: rgba(250, 238, 214, 0.65);
+  background: rgba(3, 20, 14, 0.18);
+  border-left: 2px solid rgba(228, 199, 129, 0.65);
+  font-size: 0.69rem;
+  line-height: 1.75;
+}
+
+.mazuan-safety strong {
+  margin-right: 5px;
+  color: #f1d99f;
+}
+
+html[data-locale="en"] {
+  --display: ui-serif, Georgia, "Times New Roman", serif;
+}
+
+html[data-locale="en"] .hero h1,
+html[data-locale="en"] .authority-intro h2,
+html[data-locale="en"] .services-intro h2,
+html[data-locale="en"] .books-heading h2,
+html[data-locale="en"] .story-heading h2,
+html[data-locale="en"] .mazuan-content h2 {
+  letter-spacing: -0.015em;
+}
+
+html[data-locale="en"] .mazuan-content h2 {
+  font-size: clamp(2.35rem, 4vw, 3.85rem);
+}
+
+@media (max-width: 1080px) {
+  .language-switch {
+    gap: 2px;
+  }
+
+  .language-switch a {
+    min-width: 22px;
+  }
+
+  .mazuan-section {
+    gap: 48px;
+  }
+
+  .mazuan-features li {
+    min-height: 148px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mazuan-section {
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+    gap: 34px;
+  }
+
+  .mazuan-image-frame img {
+    min-height: 460px;
+  }
+
+  .mazuan-features {
+    grid-template-columns: 1fr;
+  }
+
+  .mazuan-features li {
+    min-height: 0;
+  }
+
+  .mazuan-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px) {
+  .language-switch {
+    min-height: 44px;
+    font-size: 0.66rem;
+  }
+
+  .mazuan-section {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding-top: 64px;
+    padding-bottom: 68px;
+  }
+
+  .mazuan-visual {
+    order: 2;
+  }
+
+  .mazuan-content {
+    order: 1;
+  }
+
+  .mazuan-image-frame {
+    padding: 8px;
+  }
+
+  .mazuan-image-frame img {
+    height: min(118vw, 560px);
+    min-height: 0;
+  }
+
+  .mazuan-content h2,
+  html[data-locale="en"] .mazuan-content h2 {
+    font-size: clamp(2.25rem, 10vw, 3.15rem);
+  }
+
+  .mazuan-lead {
+    font-size: 0.88rem;
+  }
+
+  .mazuan-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mazuan-features li {
+    display: block;
+    min-height: 158px;
+    padding: 18px 15px;
+  }
+
+  .mazuan-features li > span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .mazuan-actions {
+    gap: 10px;
+  }
+
+  .mazuan-buy-button {
+    width: 100%;
+  }
+
+  .mazuan-actions > small {
+    max-width: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-line-link strong {
+    display: none;
+  }
+
+  .header-line-link {
+    min-width: 44px;
+    width: 44px;
+    padding: 6px;
+    border-radius: 50%;
+  }
+
+  html[data-locale="en"] .brand-name {
+    max-width: 114px;
+    overflow: hidden;
+    font-size: 0.86rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 720px) {
+  .contact-campaign-mark {
+    width: 82px;
+    height: 82px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .mazuan-features {
+    grid-template-columns: 1fr;
+  }
+
+  .mazuan-features li {
+    min-height: 0;
+  }
 }
