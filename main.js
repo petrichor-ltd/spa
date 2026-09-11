@@ -191,6 +191,14 @@ const modalContent = {
     link: "#book-shop",
     actionLabel: "前往選購"
   },
+  "book-deep-sleep": {
+    kicker: "電子書",
+    title: "睡得香香，腦波穩穩",
+    body: "從腦波、情緒與植物香氛出發，理解大腦為什麼停不下來，並透過狀態覺察與放鬆引導，找回屬於自己的舒壓頻率。",
+    points: ["以腦波、情緒與睡眠為入口，理解忙碌、焦慮與放鬆之間的身心節奏。", "結合植物香氛、呼吸、音樂與環境，建立可融入日常的放鬆儀式。", "適合想改善休息品質的忙碌大人，以及希望把狀態照護帶進服務的美容師與 SPA 工作者。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
   "service-startup": {
     kicker: "服務與專長",
     title: "我想開SPA店",
@@ -368,6 +376,18 @@ const shopBooks = [
       { page: 2, src: "preview-pages/life-water/page-02.webp" },
       { page: 3, src: "preview-pages/life-water/page-03.webp" },
       { page: 4, src: "preview-pages/life-water/page-04.webp" }
+    ]
+  },
+  {
+    id: "deep-sleep",
+    title: "睡得香香，腦波穩穩",
+    image: "img/book-deep-sleep.jpg",
+    modal: "book-deep-sleep",
+    preview: "preview-books/deep-sleep-preview.pdf",
+    previewPages: [
+      { page: 15, src: "preview-pages/deep-sleep/page-15.webp" },
+      { page: 16, src: "preview-pages/deep-sleep/page-16.webp" },
+      { page: 17, src: "preview-pages/deep-sleep/page-17.webp" }
     ]
   }
 ];
