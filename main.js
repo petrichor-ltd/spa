@@ -199,6 +199,14 @@ const modalContent = {
     link: "#book-shop",
     actionLabel: "前往選購"
   },
+  "book-town": {
+    kicker: "電子書",
+    title: "眷村長大的孩子",
+    body: "王燕呢以屏東眷村的成長記憶，寫下父母、手足與鄰里互相照顧的故事，讓家的味道與童年的溫暖，在歲月裡繼續流傳。",
+    points: ["從巷弄遊戲、家常料理到父母的年代，記錄眷村生活與彼此照應的人情。", "適合懷念眷村、關心臺灣生活記憶，以及想從家庭故事尋找歸屬感的讀者。", "把分享、勇敢、責任與感恩留在故事裡，陪伴讀者找回心中溫暖的家。"],
+    link: "#book-shop",
+    actionLabel: "前往選購"
+  },
   "service-startup": {
     kicker: "服務與專長",
     title: "我想開SPA店",
@@ -388,6 +396,18 @@ const shopBooks = [
       { page: 15, src: "preview-pages/deep-sleep/page-15.webp" },
       { page: 16, src: "preview-pages/deep-sleep/page-16.webp" },
       { page: 17, src: "preview-pages/deep-sleep/page-17.webp" }
+    ]
+  },
+  {
+    id: "town",
+    title: "眷村長大的孩子",
+    image: "img/book-town.jpg",
+    modal: "book-town",
+    preview: "preview-books/town-preview.pdf",
+    previewPages: [
+      { page: 14, src: "preview-pages/town/page-14.webp" },
+      { page: 15, src: "preview-pages/town/page-15.webp" },
+      { page: 16, src: "preview-pages/town/page-16.webp" }
     ]
   }
 ];
